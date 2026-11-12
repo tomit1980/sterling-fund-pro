@@ -6,25 +6,25 @@ Loaded Prisma config from prisma.config.ts.
 
 Prisma schema loaded from prisma\schema.prisma.
 
-✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 193ms
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 121ms
 
 ▲ Next.js 16.4.6 (Turbopack)
 - Environments: .env
 ⚠ Warning: Next.js ignored package-lock.json in C:\Users\USER because it is outside the current Git repository (C:\Users\USER\Desktop\Projects\sterling-fund-pro).
  To use this directory, set `turbopack.root` in your Next.js config.
 
-✓ Running next.config.ts took 43ms
+✓ Running next.config.ts took 35ms
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.1s
+✓ Compiled successfully in 2.2s
   Running TypeScript ...
-  Finished TypeScript in 5.5s ...
+  Finished TypeScript in 6.2s ...
   Collecting page data using 11 workers ...
   Generating static pages using 11 workers (0/64) ...
   Generating static pages using 11 workers (16/64) 
   Generating static pages using 11 workers (32/64) 
   Generating static pages using 11 workers (48/64) 
-✓ Generating static pages using 11 workers (64/64) in 983ms
+✓ Generating static pages using 11 workers (64/64) in 940ms
   Finalizing page optimization ...
 
 Route (app)

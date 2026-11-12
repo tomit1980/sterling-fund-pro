@@ -1,6 +1,6 @@
 # QA report — Sterling Fund Pro
 
-Date: 2026-11-12 (Israel time). Build: commit `94f2903` (+ final e2e run pending, see §4).
+Date: 2026-11-12 (Israel time). Final verification 16:58 IST against the production build (commit `74544fd` + one test-selector fix).
 
 ## 1. Summary
 
@@ -11,13 +11,13 @@ Date: 2026-11-12 (Israel time). Build: commit `94f2903` (+ final e2e run pending
 | Responsive at desktop / tablet / mobile | PASS with fixes | Overflow found and fixed: tooltip (desktop), dashboard grids + Card `min-w-0` (mobile), admin main `min-w-0`, platform glow. Final three-project run pending (§4). |
 | Registration and login functional | PASS | `auth.spec.ts` register → verify (dev mailbox) → login → dashboard → logout; password reset; weak-password validation (desktop run 2). QA agent: unverified → 403, lockout after 10 failures → 423, MFA half-session cannot reach data. |
 | Forms validated and persisted | PASS | Contact form → row visible in admin inbox (`support.spec.ts`), honeypot + timing rejection, Zod on client and server. |
-| Support workflow functional | PASS after fix | Chat widget had a payload-shape bug (messages nested on the conversation) — fixed in `eb3668c`; admin reply flow in `support.spec.ts`; agent presence heartbeat; status never "online" without heartbeat + office hours. |
+| Support workflow functional | PASS | Chat widget had a payload-shape bug (messages nested on the conversation) — fixed in `eb3668c`; admin reply flow in `support.spec.ts`; agent presence heartbeat; status never "online" without heartbeat + office hours. |
 | Charts render correctly | PASS | `dashboard.spec.ts`: canvas visible on `/dashboard/markets/AAPL`, range tabs switch, TradingView attribution shown. |
 | Demo data visibly identified | PASS | `DemoBadge` on home (9), platform (9), dashboard (8 + banner), markets (4); all dashboard API responses `demo: true`; Trade/Deposit/Withdraw disabled. |
 | No cross-account data exposure | PASS | `authorization.spec.ts` watchlist isolation; QA agent IDOR probes on applications, support threads, sessions, chat cookies all refused (401/403/404). |
 | No broken assets / console errors | PASS | Zero console messages on 13 pages (QA agent, production build with nonce CSP); Playwright asserts no console errors per page. |
 | Production build successful | PASS | `npm run build` exit 0 (Next 16.4.6, 60+ routes). |
-| Automated tests passing | PASS (unit) / PENDING (e2e final) | Vitest: 19 files, **101 tests** green. Playwright desktop run 2: 39/42 (3 failures fixed since). Final run: see §4. |
+| Automated tests passing | PASS | Vitest: 19 files, **101 tests** green. Playwright final run: **126 passed, 0 failed** (42 specs × desktop 1440 / tablet 768 / mobile Pixel 7, 3.9 min, exit 0). |
 
 ## 2. Security review (independent QA agent + automated commit review)
 
@@ -54,13 +54,9 @@ mobile) and QA agent captures sit in the session scratchpad.
 
 ## 4. Open items at hand-over
 
-- Final three-viewport Playwright run (after the QA fixes): **123 passed, 3 failed** (2.3 min). The three
-  failures are the same spec on each viewport: `support.spec.ts` "live chat: visitor starts a chat, agent
-  replies, visitor sees the reply". The visitor half now passes (opening message visible); the admin-reply
-  half fails on the admin thread page after the reply textbox selector was fixed (one further selector/flow
-  issue, not yet diagnosed — see `test-results/support-*-desktop/`). The reply API itself was exercised
-  successfully by the QA agent via curl, so this is a test-flow gap, not a known product bug. Status: FAIL
-  (e2e) until fixed.
+- Final three-viewport Playwright run: **126 passed, 0 failed**. The earlier live-chat failures were a
+  test-selector ambiguity (`/send|reply/i` matched both "Send reply" and "Close without reply"); the product flow
+  (visitor starts chat → admin replies → visitor sees the reply via polling) is verified end-to-end on all viewports.
 - Finnhub provider untested (no API key). Email delivery untested against a real SMTP server (dev mailbox only).
 - QA probes left test users (`qa-*@example.com`) and changed the demo application to UNDER_REVIEW in the local
   dev database; `npm run db:seed` is idempotent and does not reset them.

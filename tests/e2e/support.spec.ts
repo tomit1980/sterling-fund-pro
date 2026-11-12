@@ -65,7 +65,7 @@ test.describe("support and lead management", () => {
     await admin.getByText(opening.slice(0, 30)).first().click();
     const reply = `Yes — all prices are demo data. ${Date.now()}`;
     await admin.getByRole("textbox", { name: /^reply$/i }).fill(reply);
-    await admin.getByRole("button", { name: /send|reply/i }).click();
+    await admin.getByRole("button", { name: /^send reply$/i }).click();
     await expect(admin.getByText(reply)).toBeVisible();
     await adminCtx.close();
 

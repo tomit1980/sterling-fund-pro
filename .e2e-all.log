@@ -4,1160 +4,132 @@
 
 Running 126 tests using 1 worker
 
-  ok   1 [desktop] › tests\e2e\auth.spec.ts:5:3 › account lifecycle › register → verify email → login → dashboard → logout (3.1s)
-  ok   2 [desktop] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token (2.4s)
-  ok   3 [desktop] › tests\e2e\auth.spec.ts:67:3 › account lifecycle › seeded demo user can log in and see the demo portfolio (1.3s)
-  ok   4 [desktop] › tests\e2e\auth.spec.ts:77:3 › account lifecycle › register form validates and blocks weak passwords (587ms)
-  ok   5 [desktop] › tests\e2e\authorization.spec.ts:5:3 › authorization and isolation › unauthenticated requests are rejected (68ms)
-  ok   6 [desktop] › tests\e2e\authorization.spec.ts:17:3 › authorization and isolation › a USER cannot reach admin pages or APIs (838ms)
-  ok   7 [desktop] › tests\e2e\authorization.spec.ts:28:3 › authorization and isolation › watchlists are isolated between accounts (1.2s)
-  ok   8 [desktop] › tests\e2e\authorization.spec.ts:67:3 › authorization and isolation › admin can review a submitted application (585ms)
-  ok   9 [desktop] › tests\e2e\authorization.spec.ts:76:3 › authorization and isolation › security headers are present (39ms)
-  ok  10 [desktop] › tests\e2e\authorization.spec.ts:86:3 › authorization and isolation › cross-site mutation is rejected (CSRF) (13ms)
-  ok  11 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors (890ms)
-  ok  12 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors (1.0s)
-  ok  13 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets/AAPL with DEMO marker and no console errors (808ms)
-  ok  14 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/watchlist with DEMO marker and no console errors (680ms)
-  ok  15 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/portfolio with DEMO marker and no console errors (900ms)
-  ok  16 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/positions with DEMO marker and no console errors (791ms)
-  ok  17 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/transactions with DEMO marker and no console errors (785ms)
-  ok  18 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/application with DEMO marker and no console errors (978ms)
-  ok  19 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/settings with DEMO marker and no console errors (803ms)
-  ok  20 [desktop] › tests\e2e\dashboard.spec.ts:34:3 › dashboard › price chart renders a canvas and range switching works (989ms)
-  ok  21 [desktop] › tests\e2e\dashboard.spec.ts:42:3 › dashboard › market quotes API is public, rate-limited and labelled demo (493ms)
-  ok  22 [desktop] › tests\e2e\dashboard.spec.ts:51:3 › dashboard › trade/deposit/withdraw actions are disabled (735ms)
-  ok  23 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders / without console errors (1.3s)
-  ok  24 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/individual without console errors (697ms)
-  ok  25 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/corporate without console errors (807ms)
-  ok  26 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/smsf without console errors (814ms)
-  ok  27 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors (844ms)
-  ok  28 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/kyc-policy without console errors (601ms)
-  ok  29 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/regulation without console errors (505ms)
-  ok  30 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/risk-disclaimer without console errors (882ms)
-  ok  31 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/privacy-policy without console errors (819ms)
-  ok  32 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /contact without console errors (596ms)
-  ok  33 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /support without console errors (631ms)
-  ok  34 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /login without console errors (465ms)
-  ok  35 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /register without console errors (541ms)
-  ok  36 [desktop] › tests\e2e\marketing.spec.ts:37:1 › primary navigation links resolve (1.0s)
-  ok  37 [desktop] › tests\e2e\marketing.spec.ts:49:1 › platform preview and market widgets are labelled DEMO DATA (849ms)
-  ok  38 [desktop] › tests\e2e\marketing.spec.ts:56:1 › regulation page does not show unverified licence details (359ms)
-  ok  39 [desktop] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox (3.1s)
-  ok  40 [desktop] › tests\e2e\support.spec.ts:26:3 › support and lead management › contact form rejects a filled honeypot without storing (17ms)
-  ok  41 [desktop] › tests\e2e\support.spec.ts:40:3 › support and lead management › support status never reports online without an agent heartbeat (13ms)
-  x   42 [desktop] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply (6.7s)
-  x   43 [tablet] › tests\e2e\auth.spec.ts:5:3 › account lifecycle › register → verify email → login → dashboard → logout (2ms)
-  x   44 [tablet] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token (1ms)
-  x   45 [tablet] › tests\e2e\auth.spec.ts:67:3 › account lifecycle › seeded demo user can log in and see the demo portfolio (1ms)
-  x   46 [tablet] › tests\e2e\auth.spec.ts:77:3 › account lifecycle › register form validates and blocks weak passwords (2ms)
-  ok  47 [tablet] › tests\e2e\authorization.spec.ts:5:3 › authorization and isolation › unauthenticated requests are rejected (180ms)
-  x   48 [tablet] › tests\e2e\authorization.spec.ts:17:3 › authorization and isolation › a USER cannot reach admin pages or APIs (1ms)
-  x   49 [tablet] › tests\e2e\authorization.spec.ts:28:3 › authorization and isolation › watchlists are isolated between accounts (3ms)
-  x   50 [tablet] › tests\e2e\authorization.spec.ts:67:3 › authorization and isolation › admin can review a submitted application (3ms)
-  ok  51 [tablet] › tests\e2e\authorization.spec.ts:76:3 › authorization and isolation › security headers are present (142ms)
-  ok  52 [tablet] › tests\e2e\authorization.spec.ts:86:3 › authorization and isolation › cross-site mutation is rejected (CSRF) (33ms)
-  x   53 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors (1ms)
-  x   54 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors (2ms)
-  x   55 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets/AAPL with DEMO marker and no console errors (1ms)
-  x   56 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/watchlist with DEMO marker and no console errors (1ms)
-  x   57 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/portfolio with DEMO marker and no console errors (1ms)
-  x   58 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/positions with DEMO marker and no console errors (1ms)
-  x   59 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/transactions with DEMO marker and no console errors (2ms)
-  x   60 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/application with DEMO marker and no console errors (3ms)
-  x   61 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/settings with DEMO marker and no console errors (1ms)
-  x   62 [tablet] › tests\e2e\dashboard.spec.ts:34:3 › dashboard › price chart renders a canvas and range switching works (2ms)
-  x   63 [tablet] › tests\e2e\dashboard.spec.ts:42:3 › dashboard › market quotes API is public, rate-limited and labelled demo (2ms)
-  x   64 [tablet] › tests\e2e\dashboard.spec.ts:51:3 › dashboard › trade/deposit/withdraw actions are disabled (3ms)
-  x   65 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders / without console errors (2ms)
-  x   66 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/individual without console errors (2ms)
-  x   67 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/corporate without console errors (1ms)
-  x   68 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/smsf without console errors (1ms)
-  x   69 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors (1ms)
-  x   70 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/kyc-policy without console errors (1ms)
-  x   71 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/regulation without console errors (2ms)
-  x   72 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/risk-disclaimer without console errors (2ms)
-  x   73 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/privacy-policy without console errors (3ms)
-  x   74 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /contact without console errors (1ms)
-  x   75 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /support without console errors (1ms)
-  x   76 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /login without console errors (1ms)
-  x   77 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /register without console errors (1ms)
-  x   78 [tablet] › tests\e2e\marketing.spec.ts:37:1 › primary navigation links resolve (2ms)
-  x   79 [tablet] › tests\e2e\marketing.spec.ts:49:1 › platform preview and market widgets are labelled DEMO DATA (1ms)
-  x   80 [tablet] › tests\e2e\marketing.spec.ts:56:1 › regulation page does not show unverified licence details (1ms)
-  x   81 [tablet] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox (2ms)
-  ok  82 [tablet] › tests\e2e\support.spec.ts:26:3 › support and lead management › contact form rejects a filled honeypot without storing (77ms)
-  ok  83 [tablet] › tests\e2e\support.spec.ts:40:3 › support and lead management › support status never reports online without an agent heartbeat (28ms)
-  x   84 [tablet] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply (0ms)
-  ok  85 [mobile] › tests\e2e\auth.spec.ts:5:3 › account lifecycle › register → verify email → login → dashboard → logout (4.1s)
-  ok  86 [mobile] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token (2.6s)
-  ok  87 [mobile] › tests\e2e\auth.spec.ts:67:3 › account lifecycle › seeded demo user can log in and see the demo portfolio (1.4s)
-  ok  88 [mobile] › tests\e2e\auth.spec.ts:77:3 › account lifecycle › register form validates and blocks weak passwords (851ms)
-  ok  89 [mobile] › tests\e2e\authorization.spec.ts:5:3 › authorization and isolation › unauthenticated requests are rejected (68ms)
-  ok  90 [mobile] › tests\e2e\authorization.spec.ts:17:3 › authorization and isolation › a USER cannot reach admin pages or APIs (1.2s)
-  ok  91 [mobile] › tests\e2e\authorization.spec.ts:28:3 › authorization and isolation › watchlists are isolated between accounts (1.7s)
-  ok  92 [mobile] › tests\e2e\authorization.spec.ts:67:3 › authorization and isolation › admin can review a submitted application (672ms)
-  ok  93 [mobile] › tests\e2e\authorization.spec.ts:76:3 › authorization and isolation › security headers are present (28ms)
-  ok  94 [mobile] › tests\e2e\authorization.spec.ts:86:3 › authorization and isolation › cross-site mutation is rejected (CSRF) (11ms)
-  x   95 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors (921ms)
-  x   96 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors (1.3s)
-  ok  97 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets/AAPL with DEMO marker and no console errors (1.4s)
-  ok  98 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/watchlist with DEMO marker and no console errors (982ms)
-  ok  99 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/portfolio with DEMO marker and no console errors (1.3s)
-  ok 100 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/positions with DEMO marker and no console errors (923ms)
-  ok 101 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/transactions with DEMO marker and no console errors (892ms)
-  ok 102 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/application with DEMO marker and no console errors (858ms)
-  ok 103 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/settings with DEMO marker and no console errors (1.1s)
-  ok 104 [mobile] › tests\e2e\dashboard.spec.ts:34:3 › dashboard › price chart renders a canvas and range switching works (895ms)
-  ok 105 [mobile] › tests\e2e\dashboard.spec.ts:42:3 › dashboard › market quotes API is public, rate-limited and labelled demo (406ms)
-  ok 106 [mobile] › tests\e2e\dashboard.spec.ts:51:3 › dashboard › trade/deposit/withdraw actions are disabled (820ms)
-  ok 107 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders / without console errors (3.3s)
-  ok 108 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/individual without console errors (1.3s)
-  ok 109 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/corporate without console errors (1.3s)
-  ok 110 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/smsf without console errors (1.3s)
-  x  111 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors (726ms)
-  ok 112 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/kyc-policy without console errors (1.6s)
-  ok 113 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/regulation without console errors (1.1s)
-  ok 114 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/risk-disclaimer without console errors (1.6s)
-  ok 115 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/privacy-policy without console errors (1.2s)
-  ok 116 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /contact without console errors (966ms)
-  ok 117 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /support without console errors (1.0s)
-  ok 118 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /login without console errors (646ms)
-  ok 119 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /register without console errors (800ms)
-  ok 120 [mobile] › tests\e2e\marketing.spec.ts:37:1 › primary navigation links resolve (1.1s)
-  ok 121 [mobile] › tests\e2e\marketing.spec.ts:49:1 › platform preview and market widgets are labelled DEMO DATA (885ms)
-  ok 122 [mobile] › tests\e2e\marketing.spec.ts:56:1 › regulation page does not show unverified licence details (394ms)
-  ok 123 [mobile] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox (3.8s)
-  ok 124 [mobile] › tests\e2e\support.spec.ts:26:3 › support and lead management › contact form rejects a filled honeypot without storing (20ms)
-  ok 125 [mobile] › tests\e2e\support.spec.ts:40:3 › support and lead management › support status never reports online without an agent heartbeat (14ms)
-  x  126 [mobile] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply (6.7s)
-
-
-  1) [desktop] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByTestId('chat-panel').getByText('Hello, is the platform in demo mode? 1794475713366')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByTestId('chat-panel').getByText('Hello, is the platform in demo mode? 1794475713366') with timeout 5000ms
-      - waiting for getByTestId('chat-panel').getByText('Hello, is the platform in demo mode? 1794475713366')
-
-
-      57 |     await widget.getByRole("textbox", { name: /message/i }).fill(opening);
-      58 |     await widget.getByRole("button", { name: /start chat|leave a message|send/i }).click();
-    > 59 |     await expect(widget.getByText(opening)).toBeVisible();
-         |                                             ^
-      60 |
-      61 |     const adminCtx = await browser.newContext();
-      62 |     const admin = await adminCtx.newPage();
-        at C:\Users\USER\Desktop\Projects\sterling-fund-pro\tests\e2e\support.spec.ts:59:45
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-desktop\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-desktop\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-desktop\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-desktop\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  2) [tablet] › tests\e2e\auth.spec.ts:5:3 › account lifecycle › register → verify email → login → dashboard → logout 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\auth-account-lifecycle-reg-bd262--login-→-dashboard-→-logout-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\auth-account-lifecycle-reg-bd262--login-→-dashboard-→-logout-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\auth-account-lifecycle-reg-bd262--login-→-dashboard-→-logout-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  3) [tablet] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token ─
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\auth-account-lifecycle-password-reset-via-emailed-token-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\auth-account-lifecycle-password-reset-via-emailed-token-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\auth-account-lifecycle-password-reset-via-emailed-token-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  4) [tablet] › tests\e2e\auth.spec.ts:67:3 › account lifecycle › seeded demo user can log in and see the demo portfolio 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\auth-account-lifecycle-see-b707a--and-see-the-demo-portfolio-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\auth-account-lifecycle-see-b707a--and-see-the-demo-portfolio-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\auth-account-lifecycle-see-b707a--and-see-the-demo-portfolio-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  5) [tablet] › tests\e2e\auth.spec.ts:77:3 › account lifecycle › register form validates and blocks weak passwords 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\auth-account-lifecycle-reg-38c70-s-and-blocks-weak-passwords-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\auth-account-lifecycle-reg-38c70-s-and-blocks-weak-passwords-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\auth-account-lifecycle-reg-38c70-s-and-blocks-weak-passwords-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  6) [tablet] › tests\e2e\authorization.spec.ts:17:3 › authorization and isolation › a USER cannot reach admin pages or APIs 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\authorization-authorizatio-ea3a5-t-reach-admin-pages-or-APIs-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\authorization-authorizatio-ea3a5-t-reach-admin-pages-or-APIs-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\authorization-authorizatio-ea3a5-t-reach-admin-pages-or-APIs-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  7) [tablet] › tests\e2e\authorization.spec.ts:28:3 › authorization and isolation › watchlists are isolated between accounts 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\authorization-authorizatio-023b9-e-isolated-between-accounts-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\authorization-authorizatio-023b9-e-isolated-between-accounts-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\authorization-authorizatio-023b9-e-isolated-between-accounts-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  8) [tablet] › tests\e2e\authorization.spec.ts:67:3 › authorization and isolation › admin can review a submitted application 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\authorization-authorizatio-cf87d-iew-a-submitted-application-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\authorization-authorizatio-cf87d-iew-a-submitted-application-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\authorization-authorizatio-cf87d-iew-a-submitted-application-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  9) [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-render-17b46-arker-and-no-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-17b46-arker-and-no-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-17b46-arker-and-no-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  10) [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-render-aea85-arker-and-no-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-aea85-arker-and-no-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-aea85-arker-and-no-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  11) [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets/AAPL with DEMO marker and no console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-render-55c09-arker-and-no-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-55c09-arker-and-no-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-55c09-arker-and-no-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  12) [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/watchlist with DEMO marker and no console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-render-ede0e-arker-and-no-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-ede0e-arker-and-no-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-ede0e-arker-and-no-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  13) [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/portfolio with DEMO marker and no console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-render-1cde8-arker-and-no-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-1cde8-arker-and-no-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-1cde8-arker-and-no-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  14) [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/positions with DEMO marker and no console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-render-7d765-arker-and-no-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-7d765-arker-and-no-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-7d765-arker-and-no-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  15) [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/transactions with DEMO marker and no console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-render-93f75-arker-and-no-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-93f75-arker-and-no-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-93f75-arker-and-no-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  16) [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/application with DEMO marker and no console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-render-b0313-arker-and-no-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-b0313-arker-and-no-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-b0313-arker-and-no-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  17) [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/settings with DEMO marker and no console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-render-d263b-arker-and-no-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-d263b-arker-and-no-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-d263b-arker-and-no-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  18) [tablet] › tests\e2e\dashboard.spec.ts:34:3 › dashboard › price chart renders a canvas and range switching works 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-price--9956d-s-and-range-switching-works-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-price--9956d-s-and-range-switching-works-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-price--9956d-s-and-range-switching-works-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  19) [tablet] › tests\e2e\dashboard.spec.ts:42:3 › dashboard › market quotes API is public, rate-limited and labelled demo 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-market-6df50-e-limited-and-labelled-demo-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-market-6df50-e-limited-and-labelled-demo-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-market-6df50-e-limited-and-labelled-demo-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  20) [tablet] › tests\e2e\dashboard.spec.ts:51:3 › dashboard › trade/deposit/withdraw actions are disabled 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\dashboard-dashboard-trade--b3625-thdraw-actions-are-disabled-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-trade--b3625-thdraw-actions-are-disabled-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-trade--b3625-thdraw-actions-are-disabled-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  21) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders / without console errors ───────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  22) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/individual without console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-accounts-individual-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-accounts-individual-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-accounts-individual-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  23) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/corporate without console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-accounts-corporate-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-accounts-corporate-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-accounts-corporate-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  24) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/smsf without console errors ──
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-accounts-smsf-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-accounts-smsf-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-accounts-smsf-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  25) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors ───────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-platform-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-platform-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-platform-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  26) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/kyc-policy without console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-legal-kyc-policy-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-legal-kyc-policy-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-legal-kyc-policy-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  27) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/regulation without console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-legal-regulation-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-legal-regulation-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-legal-regulation-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  28) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/risk-disclaimer without console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-legal-ri-addbe-imer-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-legal-ri-addbe-imer-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-legal-ri-addbe-imer-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  29) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/privacy-policy without console errors 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-legal-pr-94f5a-licy-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-legal-pr-94f5a-licy-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-legal-pr-94f5a-licy-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  30) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /contact without console errors ────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-contact-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-contact-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-contact-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  31) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /support without console errors ────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-support-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-support-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-support-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  32) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /login without console errors ──────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-login-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-login-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-login-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  33) [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /register without console errors ───────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-renders-register-without-console-errors-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-register-without-console-errors-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-register-without-console-errors-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  34) [tablet] › tests\e2e\marketing.spec.ts:37:1 › primary navigation links resolve ───────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-primary-navigation-links-resolve-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-primary-navigation-links-resolve-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-primary-navigation-links-resolve-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  35) [tablet] › tests\e2e\marketing.spec.ts:49:1 › platform preview and market widgets are labelled DEMO DATA 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-platform-preview-d4952-gets-are-labelled-DEMO-DATA-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-platform-preview-d4952-gets-are-labelled-DEMO-DATA-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-platform-preview-d4952-gets-are-labelled-DEMO-DATA-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  36) [tablet] › tests\e2e\marketing.spec.ts:56:1 › regulation page does not show unverified licence details 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\marketing-regulation-page--3f6b3--unverified-licence-details-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-regulation-page--3f6b3--unverified-licence-details-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-regulation-page--3f6b3--unverified-licence-details-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  37) [tablet] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\support-support-and-lead-m-8dd09--appears-in-the-admin-inbox-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\support-support-and-lead-m-8dd09--appears-in-the-admin-inbox-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\support-support-and-lead-m-8dd09--appears-in-the-admin-inbox-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  38) [tablet] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2388\Playwright.exe
-    ╔════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright was just installed or updated.       ║
-    ║ Please run the following command to download new browsers: ║
-    ║                                                            ║
-    ║     npx playwright install                                 ║
-    ║                                                            ║
-    ║ <3 Playwright Team                                         ║
-    ╚════════════════════════════════════════════════════════════╝
-
-    Error Context: test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-tablet\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-tablet\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-tablet\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  39) [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors 
-
-    Error: horizontal overflow on /dashboard
-
-    expect(received).toBeLessThanOrEqual(expected)
-
-    Expected: <= 1
-    Received:    246
-
-      27 |       });
-      28 |       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    > 29 |       expect(overflow, `horizontal overflow on ${path}`).toBeLessThanOrEqual(1);
-         |                                                          ^
-      30 |       await page.screenshot({ path: `docs/screenshots/${testInfo.project.name}${path.replace(/\//g, "_")}.png`, fullPage: true });
-      31 |     });
-      32 |   }
-        at C:\Users\USER\Desktop\Projects\sterling-fund-pro\tests\e2e\dashboard.spec.ts:29:58
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-17b46-arker-and-no-console-errors-mobile\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\dashboard-dashboard-render-17b46-arker-and-no-console-errors-mobile\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-17b46-arker-and-no-console-errors-mobile\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-17b46-arker-and-no-console-errors-mobile\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  40) [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors 
-
-    Error: horizontal overflow on /dashboard/markets
-
-    expect(received).toBeLessThanOrEqual(expected)
-
-    Expected: <= 1
-    Received:    452
-
-      27 |       });
-      28 |       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    > 29 |       expect(overflow, `horizontal overflow on ${path}`).toBeLessThanOrEqual(1);
-         |                                                          ^
-      30 |       await page.screenshot({ path: `docs/screenshots/${testInfo.project.name}${path.replace(/\//g, "_")}.png`, fullPage: true });
-      31 |     });
-      32 |   }
-        at C:\Users\USER\Desktop\Projects\sterling-fund-pro\tests\e2e\dashboard.spec.ts:29:58
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-aea85-arker-and-no-console-errors-mobile\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\dashboard-dashboard-render-aea85-arker-and-no-console-errors-mobile\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\dashboard-dashboard-render-aea85-arker-and-no-console-errors-mobile\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\dashboard-dashboard-render-aea85-arker-and-no-console-errors-mobile\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  41) [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors ───────
-
-    Error: horizontal overflow on /platform
-
-    expect(received).toBeLessThanOrEqual(expected)
-
-    Expected: <= 1
-    Received:    16
-
-      27 |     // No horizontal overflow at any viewport.
-      28 |     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    > 29 |     expect(overflow, `horizontal overflow on ${path}`).toBeLessThanOrEqual(1);
-         |                                                        ^
-      30 |     await page.screenshot({
-      31 |       path: `docs/screenshots/${testInfo.project.name}${path === "/" ? "/home" : path.replace(/\//g, "_")}.png`,
-      32 |       fullPage: true,
-        at C:\Users\USER\Desktop\Projects\sterling-fund-pro\tests\e2e\marketing.spec.ts:29:56
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\marketing-renders-platform-without-console-errors-mobile\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\marketing-renders-platform-without-console-errors-mobile\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\marketing-renders-platform-without-console-errors-mobile\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\marketing-renders-platform-without-console-errors-mobile\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  42) [mobile] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByTestId('chat-panel').getByText('Hello, is the platform in demo mode? 1794475791773')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByTestId('chat-panel').getByText('Hello, is the platform in demo mode? 1794475791773') with timeout 5000ms
-      - waiting for getByTestId('chat-panel').getByText('Hello, is the platform in demo mode? 1794475791773')
-
-
-      57 |     await widget.getByRole("textbox", { name: /message/i }).fill(opening);
-      58 |     await widget.getByRole("button", { name: /start chat|leave a message|send/i }).click();
-    > 59 |     await expect(widget.getByText(opening)).toBeVisible();
-         |                                             ^
-      60 |
-      61 |     const adminCtx = await browser.newContext();
-      62 |     const admin = await adminCtx.newPage();
-        at C:\Users\USER\Desktop\Projects\sterling-fund-pro\tests\e2e\support.spec.ts:59:45
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-mobile\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-mobile\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-mobile\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-mobile\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  42 failed
-    [desktop] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply 
-    [tablet] › tests\e2e\auth.spec.ts:5:3 › account lifecycle › register → verify email → login → dashboard → logout 
-    [tablet] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token ──
-    [tablet] › tests\e2e\auth.spec.ts:67:3 › account lifecycle › seeded demo user can log in and see the demo portfolio 
-    [tablet] › tests\e2e\auth.spec.ts:77:3 › account lifecycle › register form validates and blocks weak passwords 
-    [tablet] › tests\e2e\authorization.spec.ts:17:3 › authorization and isolation › a USER cannot reach admin pages or APIs 
-    [tablet] › tests\e2e\authorization.spec.ts:28:3 › authorization and isolation › watchlists are isolated between accounts 
-    [tablet] › tests\e2e\authorization.spec.ts:67:3 › authorization and isolation › admin can review a submitted application 
-    [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors 
-    [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors 
-    [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets/AAPL with DEMO marker and no console errors 
-    [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/watchlist with DEMO marker and no console errors 
-    [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/portfolio with DEMO marker and no console errors 
-    [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/positions with DEMO marker and no console errors 
-    [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/transactions with DEMO marker and no console errors 
-    [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/application with DEMO marker and no console errors 
-    [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/settings with DEMO marker and no console errors 
-    [tablet] › tests\e2e\dashboard.spec.ts:34:3 › dashboard › price chart renders a canvas and range switching works 
-    [tablet] › tests\e2e\dashboard.spec.ts:42:3 › dashboard › market quotes API is public, rate-limited and labelled demo 
-    [tablet] › tests\e2e\dashboard.spec.ts:51:3 › dashboard › trade/deposit/withdraw actions are disabled 
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders / without console errors ─────────────────
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/individual without console errors 
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/corporate without console errors 
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/smsf without console errors ────
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors ─────────
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/kyc-policy without console errors ─
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/regulation without console errors ─
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/risk-disclaimer without console errors 
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/privacy-policy without console errors 
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /contact without console errors ──────────
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /support without console errors ──────────
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /login without console errors ────────────
-    [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /register without console errors ─────────
-    [tablet] › tests\e2e\marketing.spec.ts:37:1 › primary navigation links resolve ─────────────────
-    [tablet] › tests\e2e\marketing.spec.ts:49:1 › platform preview and market widgets are labelled DEMO DATA 
-    [tablet] › tests\e2e\marketing.spec.ts:56:1 › regulation page does not show unverified licence details 
-    [tablet] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox 
-    [tablet] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply 
-    [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors 
-    [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors 
-    [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors ─────────
-    [mobile] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply 
-  84 passed (2.1m)
-E2E_EXIT=1
+  ok   1 [desktop] › tests\e2e\auth.spec.ts:5:3 › account lifecycle › register → verify email → login → dashboard → logout (3.8s)
+  ok   2 [desktop] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token (2.9s)
+  ok   3 [desktop] › tests\e2e\auth.spec.ts:67:3 › account lifecycle › seeded demo user can log in and see the demo portfolio (1.8s)
+  ok   4 [desktop] › tests\e2e\auth.spec.ts:77:3 › account lifecycle › register form validates and blocks weak passwords (716ms)
+  ok   5 [desktop] › tests\e2e\authorization.spec.ts:5:3 › authorization and isolation › unauthenticated requests are rejected (86ms)
+  ok   6 [desktop] › tests\e2e\authorization.spec.ts:17:3 › authorization and isolation › a USER cannot reach admin pages or APIs (1.1s)
+  ok   7 [desktop] › tests\e2e\authorization.spec.ts:28:3 › authorization and isolation › watchlists are isolated between accounts (1.6s)
+  ok   8 [desktop] › tests\e2e\authorization.spec.ts:67:3 › authorization and isolation › admin can review a submitted application (815ms)
+  ok   9 [desktop] › tests\e2e\authorization.spec.ts:76:3 › authorization and isolation › security headers are present (49ms)
+  ok  10 [desktop] › tests\e2e\authorization.spec.ts:86:3 › authorization and isolation › cross-site mutation is rejected (CSRF) (17ms)
+  ok  11 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors (1.3s)
+  ok  12 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors (1.2s)
+  ok  13 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets/AAPL with DEMO marker and no console errors (1.1s)
+  ok  14 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/watchlist with DEMO marker and no console errors (877ms)
+  ok  15 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/portfolio with DEMO marker and no console errors (942ms)
+  ok  16 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/positions with DEMO marker and no console errors (866ms)
+  ok  17 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/transactions with DEMO marker and no console errors (921ms)
+  ok  18 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/application with DEMO marker and no console errors (989ms)
+  ok  19 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/settings with DEMO marker and no console errors (869ms)
+  ok  20 [desktop] › tests\e2e\dashboard.spec.ts:34:3 › dashboard › price chart renders a canvas and range switching works (1.1s)
+  ok  21 [desktop] › tests\e2e\dashboard.spec.ts:42:3 › dashboard › market quotes API is public, rate-limited and labelled demo (747ms)
+  ok  22 [desktop] › tests\e2e\dashboard.spec.ts:51:3 › dashboard › trade/deposit/withdraw actions are disabled (1.3s)
+  ok  23 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders / without console errors (1.9s)
+  ok  24 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/individual without console errors (921ms)
+  ok  25 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/corporate without console errors (1.1s)
+  ok  26 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/smsf without console errors (1.1s)
+  ok  27 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors (1.2s)
+  ok  28 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/kyc-policy without console errors (906ms)
+  ok  29 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/regulation without console errors (791ms)
+  ok  30 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/risk-disclaimer without console errors (895ms)
+  ok  31 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/privacy-policy without console errors (863ms)
+  ok  32 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /contact without console errors (779ms)
+  ok  33 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /support without console errors (1.2s)
+  ok  34 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /login without console errors (719ms)
+  ok  35 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /register without console errors (824ms)
+  ok  36 [desktop] › tests\e2e\marketing.spec.ts:37:1 › primary navigation links resolve (1.1s)
+  ok  37 [desktop] › tests\e2e\marketing.spec.ts:49:1 › platform preview and market widgets are labelled DEMO DATA (1.1s)
+  ok  38 [desktop] › tests\e2e\marketing.spec.ts:56:1 › regulation page does not show unverified licence details (535ms)
+  ok  39 [desktop] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox (3.6s)
+  ok  40 [desktop] › tests\e2e\support.spec.ts:26:3 › support and lead management › contact form rejects a filled honeypot without storing (30ms)
+  ok  41 [desktop] › tests\e2e\support.spec.ts:40:3 › support and lead management › support status never reports online without an agent heartbeat (21ms)
+  ok  42 [desktop] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply (6.2s)
+  ok  43 [tablet] › tests\e2e\auth.spec.ts:5:3 › account lifecycle › register → verify email → login → dashboard → logout (4.7s)
+  ok  44 [tablet] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token (3.0s)
+  ok  45 [tablet] › tests\e2e\auth.spec.ts:67:3 › account lifecycle › seeded demo user can log in and see the demo portfolio (2.2s)
+  ok  46 [tablet] › tests\e2e\auth.spec.ts:77:3 › account lifecycle › register form validates and blocks weak passwords (824ms)
+  ok  47 [tablet] › tests\e2e\authorization.spec.ts:5:3 › authorization and isolation › unauthenticated requests are rejected (72ms)
+  ok  48 [tablet] › tests\e2e\authorization.spec.ts:17:3 › authorization and isolation › a USER cannot reach admin pages or APIs (1.2s)
+  ok  49 [tablet] › tests\e2e\authorization.spec.ts:28:3 › authorization and isolation › watchlists are isolated between accounts (1.7s)
+  ok  50 [tablet] › tests\e2e\authorization.spec.ts:67:3 › authorization and isolation › admin can review a submitted application (771ms)
+  ok  51 [tablet] › tests\e2e\authorization.spec.ts:76:3 › authorization and isolation › security headers are present (63ms)
+  ok  52 [tablet] › tests\e2e\authorization.spec.ts:86:3 › authorization and isolation › cross-site mutation is rejected (CSRF) (14ms)
+  ok  53 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors (1.3s)
+  ok  54 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors (1.2s)
+  ok  55 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets/AAPL with DEMO marker and no console errors (1.3s)
+  ok  56 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/watchlist with DEMO marker and no console errors (1.3s)
+  ok  57 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/portfolio with DEMO marker and no console errors (1.2s)
+  ok  58 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/positions with DEMO marker and no console errors (1.1s)
+  ok  59 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/transactions with DEMO marker and no console errors (1.2s)
+  ok  60 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/application with DEMO marker and no console errors (1.0s)
+  ok  61 [tablet] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/settings with DEMO marker and no console errors (1.0s)
+  ok  62 [tablet] › tests\e2e\dashboard.spec.ts:34:3 › dashboard › price chart renders a canvas and range switching works (1.3s)
+  ok  63 [tablet] › tests\e2e\dashboard.spec.ts:42:3 › dashboard › market quotes API is public, rate-limited and labelled demo (782ms)
+  ok  64 [tablet] › tests\e2e\dashboard.spec.ts:51:3 › dashboard › trade/deposit/withdraw actions are disabled (978ms)
+  ok  65 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders / without console errors (2.8s)
+  ok  66 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/individual without console errors (1.2s)
+  ok  67 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/corporate without console errors (1.1s)
+  ok  68 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/smsf without console errors (1.0s)
+  ok  69 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors (1.4s)
+  ok  70 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/kyc-policy without console errors (1.1s)
+  ok  71 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/regulation without console errors (812ms)
+  ok  72 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/risk-disclaimer without console errors (1.0s)
+  ok  73 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/privacy-policy without console errors (1.2s)
+  ok  74 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /contact without console errors (1.3s)
+  ok  75 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /support without console errors (1.5s)
+  ok  76 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /login without console errors (1.9s)
+  ok  77 [tablet] › tests\e2e\marketing.spec.ts:21:3 › renders /register without console errors (1.6s)
+  ok  78 [tablet] › tests\e2e\marketing.spec.ts:37:1 › primary navigation links resolve (2.7s)
+  ok  79 [tablet] › tests\e2e\marketing.spec.ts:49:1 › platform preview and market widgets are labelled DEMO DATA (2.3s)
+  ok  80 [tablet] › tests\e2e\marketing.spec.ts:56:1 › regulation page does not show unverified licence details (785ms)
+  ok  81 [tablet] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox (6.6s)
+  ok  82 [tablet] › tests\e2e\support.spec.ts:26:3 › support and lead management › contact form rejects a filled honeypot without storing (52ms)
+  ok  83 [tablet] › tests\e2e\support.spec.ts:40:3 › support and lead management › support status never reports online without an agent heartbeat (48ms)
+  ok  84 [tablet] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply (6.5s)
+  ok  85 [mobile] › tests\e2e\auth.spec.ts:5:3 › account lifecycle › register → verify email → login → dashboard → logout (9.4s)
+  ok  86 [mobile] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token (5.7s)
+  ok  87 [mobile] › tests\e2e\auth.spec.ts:67:3 › account lifecycle › seeded demo user can log in and see the demo portfolio (3.5s)
+  ok  88 [mobile] › tests\e2e\auth.spec.ts:77:3 › account lifecycle › register form validates and blocks weak passwords (2.2s)
+  ok  89 [mobile] › tests\e2e\authorization.spec.ts:5:3 › authorization and isolation › unauthenticated requests are rejected (101ms)
+  ok  90 [mobile] › tests\e2e\authorization.spec.ts:17:3 › authorization and isolation › a USER cannot reach admin pages or APIs (2.5s)
+  ok  91 [mobile] › tests\e2e\authorization.spec.ts:28:3 › authorization and isolation › watchlists are isolated between accounts (4.4s)
+  ok  92 [mobile] › tests\e2e\authorization.spec.ts:67:3 › authorization and isolation › admin can review a submitted application (2.0s)
+  ok  93 [mobile] › tests\e2e\authorization.spec.ts:76:3 › authorization and isolation › security headers are present (92ms)
+  ok  94 [mobile] › tests\e2e\authorization.spec.ts:86:3 › authorization and isolation › cross-site mutation is rejected (CSRF) (52ms)
+  ok  95 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors (3.6s)
+  ok  96 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors (2.9s)
+  ok  97 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets/AAPL with DEMO marker and no console errors (2.0s)
+  ok  98 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/watchlist with DEMO marker and no console errors (1.8s)
+  ok  99 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/portfolio with DEMO marker and no console errors (2.1s)
+  ok 100 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/positions with DEMO marker and no console errors (1.9s)
+  ok 101 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/transactions with DEMO marker and no console errors (1.9s)
+  ok 102 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/application with DEMO marker and no console errors (1.8s)
+  ok 103 [mobile] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/settings with DEMO marker and no console errors (1.9s)
+  ok 104 [mobile] › tests\e2e\dashboard.spec.ts:34:3 › dashboard › price chart renders a canvas and range switching works (1.9s)
+  ok 105 [mobile] › tests\e2e\dashboard.spec.ts:42:3 › dashboard › market quotes API is public, rate-limited and labelled demo (1.0s)
+  ok 106 [mobile] › tests\e2e\dashboard.spec.ts:51:3 › dashboard › trade/deposit/withdraw actions are disabled (1.5s)
+  ok 107 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders / without console errors (5.5s)
+  ok 108 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/individual without console errors (2.8s)
+  ok 109 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/corporate without console errors (2.8s)
+  ok 110 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/smsf without console errors (2.9s)
+  ok 111 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors (3.6s)
+  ok 112 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/kyc-policy without console errors (3.2s)
+  ok 113 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/regulation without console errors (1.9s)
+  ok 114 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/risk-disclaimer without console errors (2.7s)
+  ok 115 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/privacy-policy without console errors (2.9s)
+  ok 116 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /contact without console errors (1.8s)
+  ok 117 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /support without console errors (2.3s)
+  ok 118 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /login without console errors (1.3s)
+  ok 119 [mobile] › tests\e2e\marketing.spec.ts:21:3 › renders /register without console errors (1.7s)
+  ok 120 [mobile] › tests\e2e\marketing.spec.ts:37:1 › primary navigation links resolve (1.7s)
+  ok 121 [mobile] › tests\e2e\marketing.spec.ts:49:1 › platform preview and market widgets are labelled DEMO DATA (1.4s)
+  ok 122 [mobile] › tests\e2e\marketing.spec.ts:56:1 › regulation page does not show unverified licence details (702ms)
+  ok 123 [mobile] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox (5.2s)
+  ok 124 [mobile] › tests\e2e\support.spec.ts:26:3 › support and lead management › contact form rejects a filled honeypot without storing (66ms)
+  ok 125 [mobile] › tests\e2e\support.spec.ts:40:3 › support and lead management › support status never reports online without an agent heartbeat (30ms)
+  ok 126 [mobile] › tests\e2e\support.spec.ts:49:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply (6.9s)
+
+  126 passed (3.9m)
+E2E_EXIT=0
