@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { ZodError, type ZodType } from "zod";
 import { AuthError } from "@/lib/auth/session";
 import { env } from "@/lib/env";
+import { resolveClientIp } from "@/lib/request-ip";
 
 export type ApiOk<T> = { ok: true; data: T };
 export type ApiErr = {
@@ -102,6 +103,5 @@ export function handler<Ctx = unknown>(fn: (req: NextRequest, ctx: Ctx) => Promi
 }
 
 export function clientIp(req: NextRequest): string {
-  const fwd = req.headers.get("x-forwarded-for");
-  return (fwd ? fwd.split(",")[0] : req.headers.get("x-real-ip"))?.trim() || "127.0.0.1";
+  return resolveClientIp((n) => req.headers.get(n));
 }

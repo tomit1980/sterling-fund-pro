@@ -5,6 +5,7 @@ import type { Role, User } from "@/generated/prisma/client";
 import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
 import { randomToken, sha256 } from "@/lib/auth/crypto";
+import { resolveClientIp } from "@/lib/request-ip";
 
 export const SESSION_COOKIE = "sfp_session";
 export const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days rolling
@@ -172,7 +173,5 @@ export async function requireRolePage(role: Role, nextPath?: string): Promise<Se
 /** Best-effort client IP and user agent for audit/rate-limit purposes. */
 export async function requestMeta(): Promise<{ ip: string; userAgent: string | null }> {
   const h = await headers();
-  const fwd = h.get("x-forwarded-for");
-  const ip = (fwd ? fwd.split(",")[0] : h.get("x-real-ip")) ?? "127.0.0.1";
-  return { ip: ip.trim(), userAgent: h.get("user-agent") };
+  return { ip: resolveClientIp((n) => h.get(n)), userAgent: h.get("user-agent") };
 }

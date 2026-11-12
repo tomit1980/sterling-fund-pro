@@ -26,22 +26,23 @@ export async function consumeRateLimit(rule: RateLimitRule, identifier: string):
   const now = new Date();
   const windowMs = rule.windowSeconds * 1000;
 
-  const result = await prisma.$transaction(async (tx) => {
-    const existing = await tx.rateLimitBucket.findUnique({ where: { key } });
-    if (!existing || now.getTime() - existing.windowStart.getTime() >= windowMs) {
-      await tx.rateLimitBucket.upsert({
-        where: { key },
-        create: { key, windowStart: now, count: 1 },
-        update: { windowStart: now, count: 1 },
-      });
-      return { count: 1, windowStart: now };
-    }
-    const updated = await tx.rateLimitBucket.update({
-      where: { key },
-      data: { count: { increment: 1 } },
-    });
-    return { count: updated.count, windowStart: updated.windowStart };
-  });
+  // Single atomic statement: start a new window when the old one expired, otherwise increment.
+  // Avoids the read-then-write race of a findUnique/upsert pair under concurrent requests.
+  const rows = await prisma.$queryRaw<{ count: number; windowStart: Date }[]>`
+    INSERT INTO "RateLimitBucket" ("key", "windowStart", "count", "updatedAt")
+    VALUES (${key}, ${now}, 1, ${now})
+    ON CONFLICT ("key") DO UPDATE SET
+      "count" = CASE
+        WHEN "RateLimitBucket"."windowStart" <= ${new Date(now.getTime() - windowMs)} THEN 1
+        ELSE "RateLimitBucket"."count" + 1
+      END,
+      "windowStart" = CASE
+        WHEN "RateLimitBucket"."windowStart" <= ${new Date(now.getTime() - windowMs)} THEN ${now}
+        ELSE "RateLimitBucket"."windowStart"
+      END,
+      "updatedAt" = ${now}
+    RETURNING "count", "windowStart"`;
+  const result = rows[0];
 
   const resetAt = new Date(result.windowStart.getTime() + windowMs);
   return { allowed: result.count <= rule.limit, remaining: Math.max(0, rule.limit - result.count), resetAt };
