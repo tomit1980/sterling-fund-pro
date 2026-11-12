@@ -1,0 +1,321 @@
+// Sterling Fund Pro — data model
+// All money-like values in demo tables are illustrative (isDemo = true) and are never
+// connected to real custody, deposits, withdrawals or order execution.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  SUPPORT
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum TokenType {
+  EMAIL_VERIFY
+  PASSWORD_RESET
+}
+
+enum ApplicationType {
+  INDIVIDUAL
+  CORPORATE
+  SMSF
+}
+
+enum ApplicationStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  MORE_INFO
+  APPROVED
+  REJECTED
+}
+
+enum ConversationChannel {
+  CONTACT_FORM
+  LIVE_CHAT
+}
+
+enum ConversationStatus {
+  OPEN
+  PENDING
+  CLOSED
+}
+
+enum SenderType {
+  USER
+  GUEST
+  AGENT
+  SYSTEM
+}
+
+enum AssetClass {
+  EQUITY
+  ETF
+  FOREX
+  CRYPTO
+  COMMODITY
+  INDEX
+}
+
+enum TransactionType {
+  BUY
+  SELL
+  DIVIDEND
+  FEE
+  DEMO_CREDIT
+}
+
+model User {
+  id               String     @id @default(cuid())
+  email            String     @unique
+  emailVerifiedAt  DateTime?
+  passwordHash     String
+  name             String
+  role             Role       @default(USER)
+  status           UserStatus @default(ACTIVE)
+  mfaEnabled       Boolean    @default(false)
+  mfaSecretEnc     String? // AES-256-GCM, base64, encrypted with APP_ENCRYPTION_KEY
+  failedLoginCount Int        @default(0)
+  lockedUntil      DateTime?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  profile       Profile?
+  sessions      Session[]
+  tokens        VerificationToken[]
+  applications  AccountApplication[]
+  reviewed      AccountApplication[]  @relation("ApplicationReviewer")
+  conversations SupportConversation[]
+  messages      SupportMessage[]
+  auditLogs     AuditLog[]
+  watchlist     WatchlistItem[]
+  demoPortfolio DemoPortfolio?
+  presence      AgentPresence?
+}
+
+model Profile {
+  userId      String   @id
+  phone       String?
+  country     String?
+  addressLine String?
+  city        String?
+  postcode    String?
+  dateOfBirth DateTime?
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Session {
+  id         String   @id @default(cuid())
+  userId     String
+  tokenHash  String   @unique
+  expiresAt  DateTime
+  ip         String?
+  userAgent  String?
+  mfaPending Boolean  @default(false) // true between password OK and TOTP OK
+  createdAt  DateTime @default(now())
+  lastSeenAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model VerificationToken {
+  id        String    @id @default(cuid())
+  userId    String
+  type      TokenType
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, type])
+}
+
+model AccountApplication {
+  id           String            @id @default(cuid())
+  userId       String
+  type         ApplicationType
+  status       ApplicationStatus @default(DRAFT)
+  data         Json // Zod-validated structured answers; never identity documents
+  submittedAt  DateTime?
+  reviewedById String?
+  reviewNotes  String?
+  decisionAt   DateTime?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  user       User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviewedBy User? @relation("ApplicationReviewer", fields: [reviewedById], references: [id])
+
+  @@index([userId])
+  @@index([status])
+}
+
+model SupportConversation {
+  id             String              @id @default(cuid())
+  userId         String?
+  guestName      String?
+  guestEmail     String?
+  guestTokenHash String?             @unique // identifies an anonymous chat visitor
+  channel        ConversationChannel
+  status         ConversationStatus  @default(OPEN)
+  subject        String
+  topic          String?
+  createdAt      DateTime            @default(now())
+  lastMessageAt  DateTime            @default(now())
+  closedAt       DateTime?
+
+  user     User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
+  messages SupportMessage[]
+
+  @@index([status, lastMessageAt])
+  @@index([userId])
+}
+
+model SupportMessage {
+  id             String     @id @default(cuid())
+  conversationId String
+  senderType     SenderType
+  senderUserId   String?
+  body           String
+  createdAt      DateTime   @default(now())
+  readAt         DateTime?
+
+  conversation SupportConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderUser   User?               @relation(fields: [senderUserId], references: [id], onDelete: SetNull)
+
+  @@index([conversationId, createdAt])
+}
+
+model AgentPresence {
+  userId     String   @id
+  lastSeenAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  actorUserId String?
+  action      String // e.g. "auth.login.success", "application.submit", "admin.user.role"
+  targetType  String?
+  targetId    String?
+  ip          String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  actor User? @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([actorUserId])
+  @@index([action])
+}
+
+model RateLimitBucket {
+  key         String   @id // "<scope>:<identifier>"
+  windowStart DateTime
+  count       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}
+
+model OutboundEmail {
+  id        String    @id @default(cuid())
+  to        String
+  subject   String
+  text      String
+  html      String?
+  sentAt    DateTime? // null = captured in dev mailbox / not yet delivered
+  error     String?
+  createdAt DateTime  @default(now())
+
+  @@index([createdAt])
+}
+
+model Instrument {
+  symbol     String     @id
+  name       String
+  assetClass AssetClass
+  currency   String     @default("USD")
+  exchange   String?
+  sortOrder  Int        @default(0)
+
+  watchlistItems WatchlistItem[]
+  positions      DemoPosition[]
+  transactions   DemoTransaction[]
+}
+
+model WatchlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  symbol    String
+  createdAt DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  instrument Instrument @relation(fields: [symbol], references: [symbol], onDelete: Cascade)
+
+  @@unique([userId, symbol])
+}
+
+model DemoPortfolio {
+  userId       String   @id
+  isDemo       Boolean  @default(true)
+  cashBalance  Decimal  @db.Decimal(18, 2)
+  currency     String   @default("USD")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user         User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  positions    DemoPosition[]
+  transactions DemoTransaction[]
+}
+
+model DemoPosition {
+  id           String  @id @default(cuid())
+  portfolioId  String
+  symbol       String
+  isDemo       Boolean @default(true)
+  quantity     Decimal @db.Decimal(18, 6)
+  avgCost      Decimal @db.Decimal(18, 4)
+  openedAt     DateTime @default(now())
+
+  portfolio  DemoPortfolio @relation(fields: [portfolioId], references: [userId], onDelete: Cascade)
+  instrument Instrument    @relation(fields: [symbol], references: [symbol], onDelete: Cascade)
+
+  @@unique([portfolioId, symbol])
+}
+
+model DemoTransaction {
+  id          String          @id @default(cuid())
+  portfolioId String
+  symbol      String?
+  isDemo      Boolean         @default(true)
+  type        TransactionType
+  quantity    Decimal?        @db.Decimal(18, 6)
+  price       Decimal?        @db.Decimal(18, 4)
+  amount      Decimal         @db.Decimal(18, 2) // signed cash effect
+  note        String?
+  occurredAt  DateTime        @default(now())
+
+  portfolio  DemoPortfolio @relation(fields: [portfolioId], references: [userId], onDelete: Cascade)
+  instrument Instrument?   @relation(fields: [symbol], references: [symbol], onDelete: SetNull)
+
+  @@index([portfolioId, occurredAt])
+}

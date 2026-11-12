@@ -1,26 +1,205 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Sterling Fund Pro design tokens
+   Dark-first premium fintech theme. Light theme via [data-theme="light"].
+   ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --surface-0: #070b14; /* page background */
+  --surface-1: #0c1220; /* section / card */
+  --surface-2: #111a2c; /* raised card */
+  --surface-3: #18243a; /* hover / input */
+  --surface-glass: rgba(16, 24, 40, 0.72);
+
+  --ink-900: #f5f7fb; /* primary text */
+  --ink-700: #c9d1e0; /* secondary text */
+  --ink-500: #8a96ad; /* muted text */
+  --ink-300: #5b6780; /* placeholder / disabled */
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+
+  --brand-50: #fff8e6;
+  --brand-300: #f3cf7a;
+  --brand-400: #e7b94e;
+  --brand-500: #d4a233; /* primary accent (gold) */
+  --brand-600: #b8862a;
+  --brand-700: #8f6720;
+
+  --accent-500: #3b82f6; /* info blue */
+  --up-500: #22c55e;
+  --up-600: #16a34a;
+  --down-500: #f43f5e;
+  --down-600: #e11d48;
+  --warn-500: #f59e0b;
+
+  --ring: rgba(212, 162, 51, 0.45);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 0 0 1px rgba(212, 162, 51, 0.25), 0 12px 40px -12px rgba(212, 162, 51, 0.35);
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --surface-0: #f6f8fc;
+  --surface-1: #ffffff;
+  --surface-2: #ffffff;
+  --surface-3: #eef2f8;
+  --surface-glass: rgba(255, 255, 255, 0.8);
+  --ink-900: #0b1220;
+  --ink-700: #2b3650;
+  --ink-500: #5b6780;
+  --ink-300: #98a3b8;
+  --line: rgba(11, 18, 32, 0.08);
+  --line-strong: rgba(11, 18, 32, 0.16);
+  --shadow-sm: 0 1px 2px rgba(11, 18, 32, 0.06);
+  --shadow-md: 0 8px 24px -8px rgba(11, 18, 32, 0.15);
+  --shadow-lg: 0 24px 60px -20px rgba(11, 18, 32, 0.2);
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-glass: var(--surface-glass);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-ink-900: var(--ink-900);
+  --color-ink-700: var(--ink-700);
+  --color-ink-500: var(--ink-500);
+  --color-ink-300: var(--ink-300);
+
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-brand-50: var(--brand-50);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+
+  --color-accent-500: var(--accent-500);
+  --color-up-500: var(--up-500);
+  --color-up-600: var(--up-600);
+  --color-down-500: var(--down-500);
+  --color-down-600: var(--down-600);
+  --color-warn-500: var(--warn-500);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-glow: var(--shadow-glow);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --animate-marquee: marquee 60s linear infinite;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface-0);
+  color: var(--ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(212, 162, 51, 0.35);
+}
+
+/* Focus ring for keyboard users */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+/* Utility layers */
+@utility text-gradient-brand {
+  background: linear-gradient(120deg, var(--brand-300), var(--brand-500) 55%, #fff1c9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility bg-radial-brand {
+  background: radial-gradient(60% 50% at 50% 0%, rgba(212, 162, 51, 0.18), transparent 70%);
+}
+
+@utility glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--line);
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
