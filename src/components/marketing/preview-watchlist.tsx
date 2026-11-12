@@ -5,7 +5,7 @@ import { ChangeText, PriceText } from "@/components/dashboard/price-cells";
 import { useQuotes } from "@/components/dashboard/use-quotes";
 
 /** US stocks/ETFs only, so a live provider (e.g. Finnhub's free plan) can serve every row. */
-const SYMBOLS = ["AAPL", "MSFT", "NVDA", "SPY"];
+const SYMBOLS = ["AAPL", "MSFT", "NVDA", "AMZN"];
 
 /**
  * Hero watchlist card fed by `/api/market/quotes`. It shows DEMO DATA whenever any row is simulated
