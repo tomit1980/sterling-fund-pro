@@ -22,4 +22,22 @@ describe("resolveClientIp", () => {
     process.env.TRUSTED_PROXY_HOPS = "0";
     expect(resolveClientIp(headers({ "x-forwarded-for": "1.1.1.1", "x-real-ip": "2.2.2.2" }))).toBe("unknown");
   });
+  it("fails closed when the chain is shorter than the configured hops", () => {
+    process.env.TRUSTED_PROXY_HOPS = "2";
+    expect(resolveClientIp(headers({ "x-forwarded-for": "1.1.1.1" }))).toBe("unknown");
+  });
+  it("ignores X-Real-IP unless explicitly trusted", () => {
+    process.env.TRUSTED_PROXY_HOPS = "1";
+    delete process.env.TRUST_X_REAL_IP;
+    expect(resolveClientIp(headers({ "x-real-ip": "2.2.2.2" }))).toBe("unknown");
+    process.env.TRUST_X_REAL_IP = "true";
+    expect(resolveClientIp(headers({ "x-real-ip": "2.2.2.2" }))).toBe("2.2.2.2");
+    delete process.env.TRUST_X_REAL_IP;
+  });
+  it("rejects garbage values and invalid hop settings", () => {
+    process.env.TRUSTED_PROXY_HOPS = "1";
+    expect(resolveClientIp(headers({ "x-forwarded-for": "<script>" }))).toBe("unknown");
+    process.env.TRUSTED_PROXY_HOPS = "lots";
+    expect(() => resolveClientIp(headers({}))).toThrow(/TRUSTED_PROXY_HOPS/);
+  });
 });
