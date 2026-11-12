@@ -1,10 +1,11 @@
-import { TrendingDown, TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 import { DemoBadge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { PreviewWatchlist } from "./preview-watchlist";
 
 /**
- * Static illustrative composition for the hero: layered glass cards with a candle sparkline,
- * a watchlist and a portfolio stat. Every number is sample data and the DemoBadge is visible.
+ * Hero composition: layered glass cards with an illustrative index chart and portfolio stat (sample data,
+ * always labelled DEMO DATA) and a watchlist fed by the market-data API (labelled only when simulated).
  */
 const CANDLES: { o: number; c: number; h: number; l: number }[] = [
   { o: 42, c: 48, h: 50, l: 40 },
@@ -21,13 +22,6 @@ const CANDLES: { o: number; c: number; h: number; l: number }[] = [
   { o: 75, c: 84, h: 86, l: 74 },
   { o: 84, c: 81, h: 88, l: 79 },
   { o: 81, c: 90, h: 92, l: 80 },
-];
-
-const WATCHLIST = [
-  { symbol: "AAPL", name: "Apple Inc.", price: "189.42", change: +0.82 },
-  { symbol: "EUR/USD", name: "Euro / US Dollar", price: "1.0872", change: -0.14 },
-  { symbol: "BTC/USD", name: "Bitcoin", price: "64,210", change: +2.31 },
-  { symbol: "XAU/USD", name: "Gold spot", price: "2,318.5", change: +0.47 },
 ];
 
 export function CandleSparkline({ className }: { className?: string }) {
@@ -70,7 +64,7 @@ export function CandleSparkline({ className }: { className?: string }) {
 
 export function PlatformPreview({ className }: { className?: string }) {
   return (
-    <div className={cn("relative mx-auto w-full max-w-lg", className)} data-testid="platform-preview" aria-label="Platform preview with demo data">
+    <div className={cn("relative mx-auto w-full max-w-lg", className)} data-testid="platform-preview" aria-label="Platform preview">
       <div className="pointer-events-none absolute -inset-4 sm:-inset-8 rounded-[2rem] bg-radial-brand opacity-80 blur-2xl" aria-hidden />
 
       {/* Chart card */}
@@ -99,28 +93,7 @@ export function PlatformPreview({ className }: { className?: string }) {
 
       {/* Watchlist card */}
       <div className="glass relative z-20 -mt-6 ml-6 rounded-lg p-4 shadow-lg sm:ml-12 sm:w-[82%]">
-        <div className="flex items-center justify-between">
-          <p className="text-sm font-semibold text-ink-900">Watchlist</p>
-          <DemoBadge className="scale-90" />
-        </div>
-        <ul className="mt-3 divide-y divide-line">
-          {WATCHLIST.map((w) => (
-            <li key={w.symbol} className="flex items-center justify-between py-2 text-sm">
-              <div>
-                <p className="font-mono font-medium text-ink-900">{w.symbol}</p>
-                <p className="text-xs text-ink-500">{w.name}</p>
-              </div>
-              <div className="text-right">
-                <p className="font-mono tabular text-ink-900">{w.price}</p>
-                <p className={cn("inline-flex items-center gap-1 font-mono text-xs tabular", w.change >= 0 ? "text-up-500" : "text-down-500")}>
-                  {w.change >= 0 ? <TrendingUp className="h-3 w-3" aria-hidden /> : <TrendingDown className="h-3 w-3" aria-hidden />}
-                  {w.change >= 0 ? "+" : ""}
-                  {w.change.toFixed(2)}%
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <PreviewWatchlist />
       </div>
 
       {/* Portfolio stat */}
