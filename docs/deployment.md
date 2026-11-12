@@ -22,47 +22,41 @@ gh repo create tomit1980/sterling-fund-pro --public --source . --remote origin -
 
 CI (`.github/workflows/ci.yml`) then runs typecheck, lint and the unit tests against a Postgres 17 service.
 
-### B. Create the database (Neon, free)
+### B. Prepare the environment file (local)
 
-1. Sign up at https://neon.tech and create a project (region close to your users, e.g. AWS Sydney).
-2. On the project dashboard, copy two connection strings:
-   - **Pooled** (host contains `-pooler`) → becomes `DATABASE_URL`
-   - **Direct** (no `-pooler`) → becomes `DIRECT_DATABASE_URL` (migrations need a direct connection)
-
-### C. Create the Vercel project
-
-1. Sign up at https://vercel.com with your GitHub account (tomit1980).
-2. **Add New → Project → Import** `tomit1980/sterling-fund-pro`. Framework, install and build commands are
-   read from `vercel.json` (`npm ci`, `npm run build:vercel`). Don't deploy yet: open **Environment Variables**.
-3. Generate the two app secrets locally (run each once, paste the output value):
+Create `.env.vercel` in the project root (git-ignored) with `APP_SECRET`, `APP_ENCRYPTION_KEY`,
+`TRUSTED_PROXY_HOPS=1`, `MARKET_DATA_PROVIDER=demo`, `SEED_ON_BUILD=true` and the three `SEED_*_EMAIL` /
+`SEED_*_PASSWORD` pairs. Secrets are 32 random bytes in base64:
 
 ```bash
 node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 ```
 
-4. Add these **Production** environment variables:
+Seed passwords must be at least 12 characters and not a `ChangeMe-` default; the seed refuses to run in
+production otherwise. The seeded logins are the admin, support-agent and demo-user accounts.
 
-| Variable | Value |
-|---|---|
-| `DATABASE_URL` | Neon pooled connection string |
-| `DIRECT_DATABASE_URL` | Neon direct connection string |
-| `APP_SECRET` | first generated value |
-| `APP_ENCRYPTION_KEY` | second generated value (rotating it later invalidates stored MFA secrets) |
-| `NEXT_PUBLIC_SITE_URL` | `https://<project>.vercel.app` (update after the first deploy if the name differs) |
-| `TRUSTED_PROXY_HOPS` | `1` |
-| `MARKET_DATA_PROVIDER` | `demo` |
-| `SEED_ON_BUILD` | `true` (first deploy only) |
-| `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | your admin login; password ≥ 12 chars, not a `ChangeMe-` value |
-| `SEED_SUPPORT_EMAIL` / `SEED_SUPPORT_PASSWORD` | support-agent login, same rules |
-| `SEED_DEMO_USER_EMAIL` / `SEED_DEMO_USER_PASSWORD` | demo-user login, same rules |
+### C. Create the Vercel project and database
 
-The seed **refuses to run** in production if any of those passwords is a default or shorter than 12 characters.
+1. Sign in at https://vercel.com with the GitHub account that owns the repo.
+2. **Add New → Project → Import** `sterling-fund-pro`. Install and build commands come from `vercel.json`.
+3. Open **Environment Variables** on the import screen and paste the whole content of `.env.vercel` into the
+   first **Key** box; Vercel splits it into separate variables.
+4. Press **Deploy**. This first build **fails on purpose** with "DATABASE_URL is not set", because there is no
+   database yet.
+5. In the project open **Storage → Create Database → Neon** (free plan), and connect it to the project for all
+   environments. The integration adds `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED` (direct, used for
+   migrations).
+6. **Deployments → ⋯ on the failed deployment → Redeploy.** The build runs `prisma generate` →
+   `prisma migrate deploy` → `prisma db seed` → `next build`.
 
-5. **Deploy.** The build runs `prisma generate` → `prisma migrate deploy` → `prisma db seed` → `next build`.
-6. After it succeeds: delete `SEED_ON_BUILD` (re-seeding resets the seeded users' passwords to the env values)
-   and, if the assigned domain differs, fix `NEXT_PUBLIC_SITE_URL` and redeploy.
+`NEXT_PUBLIC_SITE_URL` is optional on Vercel: when unset, the build uses the project's production domain
+(`VERCEL_PROJECT_PRODUCTION_URL`). Set it only for a custom domain. `SEED_ON_BUILD=true` can stay; re-seeding
+resets the seeded users' passwords to the env values, so delete it if those passwords are changed in the app.
+A separately created Neon project also works: set `DATABASE_URL` to its pooled URL and `DIRECT_DATABASE_URL`
+to its direct URL.
 
-Every push to `main` now redeploys automatically; pull requests get preview deployments.
+Every push to `main` now redeploys automatically. Preview deployments use a different domain from
+`NEXT_PUBLIC_SITE_URL`, so forms there fail the same-origin check; test on production.
 
 ### D. Known limitation: email
 

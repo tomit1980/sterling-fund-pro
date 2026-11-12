@@ -13,7 +13,11 @@ export const siteConfig = {
   tagline: "Institutional-grade trading and wealth management",
   description:
     "A professional trading platform for individual, corporate and SMSF accounts. Markets, tools and account services in one secure workspace.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000"),
   contact: {
     email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "support@example.com",
     phone: process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "",

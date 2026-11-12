@@ -32,7 +32,9 @@ export const env = {
     return required("APP_ENCRYPTION_KEY", createHash("sha256").update(devSeed + ":enc").digest("base64"));
   },
   get SITE_URL() {
-    return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+    if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+    if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+    return "http://localhost:3000";
   },
   get SMTP_URL() {
     return process.env.SMTP_URL || null;
