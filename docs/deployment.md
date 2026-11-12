@@ -65,7 +65,14 @@ to its direct URL.
 Every push to `main` now redeploys automatically. Preview deployments use a different domain from
 `NEXT_PUBLIC_SITE_URL`, so forms there fail the same-origin check; test on production.
 
-### D. Known limitation: email
+### D. Real stock prices (Finnhub, optional)
+
+Set `MARKET_DATA_PROVIDER=finnhub` and `FINNHUB_API_KEY` (Secret) in Vercel, then redeploy. On Finnhub's free
+plan only US stock and ETF quotes are real; charts, indices, forex, crypto and commodities stay simulated and
+labelled DEMO DATA per row. Quotes are cached for 60 s across instances to stay under the free limit of 60 calls a
+minute. Finnhub's free plan is for personal use; a commercial site normally needs a paid data licence.
+
+### E. Known limitation: email
 
 Without `SMTP_URL`, outgoing email (verification, password reset, support replies) is stored in the
 `OutboundEmail` table only, so new users **cannot verify their accounts**. Add a free SMTP provider (e.g. Brevo:
