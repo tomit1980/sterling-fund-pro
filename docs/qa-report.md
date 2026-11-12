@@ -54,10 +54,13 @@ mobile) and QA agent captures sit in the session scratchpad.
 
 ## 4. Open items at hand-over
 
-- The final three-viewport Playwright run (after the QA fixes) was started but had **not completed** when the
-  session's usage limit was reached. Re-run with `npm run build && npm run test:e2e`; the previous desktop
-  run was 39/42 with all three remaining failures since fixed (chat payload, tablet WebKit → Chromium, contact
-  timing). Treat e2e as PENDING until that run is green.
+- Final three-viewport Playwright run (after the QA fixes): **123 passed, 3 failed** (2.3 min). The three
+  failures are the same spec on each viewport: `support.spec.ts` "live chat: visitor starts a chat, agent
+  replies, visitor sees the reply". The visitor half now passes (opening message visible); the admin-reply
+  half fails on the admin thread page after the reply textbox selector was fixed (one further selector/flow
+  issue, not yet diagnosed — see `test-results/support-*-desktop/`). The reply API itself was exercised
+  successfully by the QA agent via curl, so this is a test-flow gap, not a known product bug. Status: FAIL
+  (e2e) until fixed.
 - Finnhub provider untested (no API key). Email delivery untested against a real SMTP server (dev mailbox only).
 - QA probes left test users (`qa-*@example.com`) and changed the demo application to UNDER_REVIEW in the local
   dev database; `npm run db:seed` is idempotent and does not reset them.
