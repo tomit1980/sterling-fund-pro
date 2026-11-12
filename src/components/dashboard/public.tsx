@@ -94,7 +94,7 @@ export function MarketOverviewCard({ className, symbolsByClass, title = "Market 
   return (
     <Card padding="none" className={cn("overflow-hidden", className)} data-testid="market-overview">
       <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
-        <h3 className="text-base font-semibold text-ink-900">{title}</h3>
+        <h2 className="text-base font-semibold text-ink-900">{title}</h2>
         {demo && <DemoBadge />}
       </div>
       <Tabs defaultValue="EQUITY" value={tab} onValueChange={(v) => setTab(v as AssetClass)} className="px-5 pt-4">

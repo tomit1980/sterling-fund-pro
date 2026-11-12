@@ -87,6 +87,7 @@ model User {
   status           UserStatus @default(ACTIVE)
   mfaEnabled       Boolean    @default(false)
   mfaSecretEnc     String? // AES-256-GCM, base64, encrypted with APP_ENCRYPTION_KEY
+  mfaLastUsedStep  Int? // last accepted TOTP time-step (+tolerance) to block code replay
   failedLoginCount Int        @default(0)
   lockedUntil      DateTime?
   createdAt        DateTime   @default(now())

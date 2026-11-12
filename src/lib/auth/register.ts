@@ -25,13 +25,14 @@ export async function registerUser(input: RegisterInput, meta: { ip?: string | n
     throw new ApiError(400, "VALIDATION", "Please choose a stronger password", { password: policy.problems });
   }
 
+  // Hash before the duplicate check so the response time does not reveal whether the email exists.
+  const passwordHash = await hashPassword(input.password);
   const existing = await prisma.user.findUnique({ where: { email: input.email }, select: { id: true } });
   if (existing) {
     await audit({ actorUserId: existing.id, action: "auth.register.duplicate", ip: meta.ip, metadata: { email: input.email } });
     return { created: false };
   }
 
-  const passwordHash = await hashPassword(input.password);
   const user = await prisma.user.create({
     data: {
       email: input.email,

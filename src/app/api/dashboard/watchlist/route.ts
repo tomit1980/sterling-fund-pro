@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 import { ApiError, assertSameOrigin, handler, parseBody } from "@/lib/api";
 import { requireUser } from "@/lib/auth/session";
+import { RATE_LIMITS, enforceRateLimit } from "@/lib/rate-limit";
 import { prisma } from "@/lib/db";
 import { getWatchlist } from "@/lib/demo/summary";
 import { ensureInstrumentRow, normaliseSymbol } from "@/lib/market/instruments";
@@ -31,6 +32,7 @@ export const GET = handler(async () => {
 export const POST = handler(async (req: NextRequest) => {
   assertSameOrigin(req);
   const user = await requireUser();
+  await enforceRateLimit(RATE_LIMITS.generic, `watchlist:${user.id}`);
   const { symbol } = await parseBody(req, symbolSchema);
 
   const instrument = await ensureInstrumentRow(symbol);
@@ -54,6 +56,7 @@ export const POST = handler(async (req: NextRequest) => {
 export const DELETE = handler(async (req: NextRequest) => {
   assertSameOrigin(req);
   const user = await requireUser();
+  await enforceRateLimit(RATE_LIMITS.generic, `watchlist:${user.id}`);
   const { symbol } = await parseBody(req, symbolSchema);
   const res = await prisma.watchlistItem.deleteMany({ where: { userId: user.id, symbol } });
   return NextResponse.json({ ok: true, data: { removed: res.count > 0, symbol, demo: true } }, noStore);

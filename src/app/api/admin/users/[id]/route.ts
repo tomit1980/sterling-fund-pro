@@ -22,6 +22,13 @@ export const PATCH = handler<Ctx>(async (req, ctx) => {
   const before = await prisma.user.findUnique({ where: { id }, select: { id: true, role: true, status: true, email: true } });
   if (!before) throw new ApiError(404, "NOT_FOUND", "User not found");
 
+  const removesAdmin =
+    before.role === "ADMIN" && before.status === "ACTIVE" && ((body.role && body.role !== "ADMIN") || body.status === "SUSPENDED");
+  if (removesAdmin) {
+    const activeAdmins = await prisma.user.count({ where: { role: "ADMIN", status: "ACTIVE" } });
+    if (activeAdmins <= 1) throw new ApiError(400, "LAST_ADMIN", "At least one active administrator must remain.");
+  }
+
   const updated = await prisma.user.update({
     where: { id },
     data: { ...(body.role ? { role: body.role } : {}), ...(body.status ? { status: body.status } : {}) },

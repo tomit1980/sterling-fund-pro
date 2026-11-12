@@ -17,7 +17,7 @@ const tones = {
 const paddings = { none: "", sm: "p-4", md: "p-6", lg: "p-8" };
 
 export function Card({ className, tone = "default", padding = "md", ...props }: CardProps) {
-  return <div className={cn("rounded-lg", tones[tone], paddings[padding], className)} {...props} />;
+  return <div className={cn("min-w-0 rounded-lg", tones[tone], paddings[padding], className)} {...props} />;
 }
 
 export function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -25,7 +25,7 @@ export function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDiv
 }
 
 export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-  return <h3 className={cn("text-base font-semibold text-ink-900", className)} {...props} />;
+  return <h2 className={cn("text-base font-semibold text-ink-900", className)} {...props} />;
 }
 
 export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {

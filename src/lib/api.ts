@@ -43,6 +43,12 @@ export class ApiError extends Error {
  */
 export function assertSameOrigin(req: NextRequest): void {
   const site = req.headers.get("sec-fetch-site");
+  const originHeader = req.headers.get("origin");
+  if (!site && !originHeader) {
+    // Fail closed: browsers always send at least one of these on cross-site requests; non-browser
+    // clients must send an Origin header matching the site URL.
+    throw new ApiError(403, "CSRF", "Missing origin information");
+  }
   if (site && site !== "same-origin" && site !== "none") {
     throw new ApiError(403, "CSRF", "Cross-site request rejected");
   }

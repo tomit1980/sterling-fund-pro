@@ -23,7 +23,10 @@ function NavDropdown({ group, pathname }: { group: NavGroup; pathname: string })
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        (ref.current?.querySelector("button") as HTMLElement | null)?.focus();
+      }
     };
     document.addEventListener("mousedown", onDoc);
     document.addEventListener("keydown", onKey);

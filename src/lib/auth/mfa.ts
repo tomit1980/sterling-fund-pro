@@ -32,6 +32,23 @@ export async function verifyMfaCode(secret: string, code: string, nowMs = Date.n
   }
 }
 
+/** TOTP time-step (30 s) for a timestamp. */
+export function totpStep(nowMs = Date.now()): number {
+  return Math.floor(nowMs / 1000 / 30);
+}
+
+/**
+ * A code accepted at step S could also be valid at S+1 (tolerance), so we record S+1 and refuse any
+ * further code while the current step is <= that value. Net effect: one successful TOTP per ~60 s.
+ */
+export function isReplay(lastUsedStep: number | null | undefined, nowMs = Date.now()): boolean {
+  return lastUsedStep != null && totpStep(nowMs) <= lastUsedStep;
+}
+
+export function nextLastUsedStep(nowMs = Date.now()): number {
+  return totpStep(nowMs) + 1;
+}
+
 export function encryptMfaSecret(secret: string): string {
   return encryptSecret(secret);
 }

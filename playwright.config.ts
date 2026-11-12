@@ -13,6 +13,7 @@ export default defineConfig({
   use: {
     baseURL,
     trace: "retain-on-failure",
+    extraHTTPHeaders: { origin: baseURL },
     screenshot: "only-on-failure",
   },
   projects: [

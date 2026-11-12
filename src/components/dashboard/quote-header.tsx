@@ -63,7 +63,7 @@ export function QuoteHeader({ instrument, initialQuote, inWatchlist: initialIn, 
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-semibold tracking-tight text-ink-900">{instrument.symbol}</h1>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink-900">{instrument.symbol}</h2>
             <Badge>{ASSET_CLASS_LABELS[instrument.assetClass]}</Badge>
             {instrument.exchange && <Badge tone="neutral">{instrument.exchange}</Badge>}
             {demo && <DemoBadge />}
