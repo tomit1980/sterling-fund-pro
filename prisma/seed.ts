@@ -15,11 +15,22 @@ const prisma = new PrismaClient({ adapter: new PrismaPg({ connectionString }) })
 
 const ADMIN_EMAIL = (process.env.SEED_ADMIN_EMAIL ?? "admin@example.com").toLowerCase();
 const ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD ?? "ChangeMe-Admin-2026!";
-const SUPPORT_EMAIL = "support@example.com";
-const SUPPORT_PASSWORD = "ChangeMe-Support-2026!";
+const SUPPORT_EMAIL = (process.env.SEED_SUPPORT_EMAIL ?? "support@example.com").toLowerCase();
+const SUPPORT_PASSWORD = process.env.SEED_SUPPORT_PASSWORD ?? "ChangeMe-Support-2026!";
 const DEMO_EMAIL = (process.env.SEED_DEMO_USER_EMAIL ?? "demo@example.com").toLowerCase();
 const DEMO_PASSWORD = process.env.SEED_DEMO_USER_PASSWORD ?? "ChangeMe-Demo-2026!";
 const DEMO_OPENING_BALANCE = "100000.00";
+
+// A public deployment must never be seeded with the documented example passwords.
+if (process.env.NODE_ENV === "production" || process.env.VERCEL_ENV === "production") {
+  const weak = Object.entries({ SEED_ADMIN_PASSWORD: ADMIN_PASSWORD, SEED_SUPPORT_PASSWORD: SUPPORT_PASSWORD, SEED_DEMO_USER_PASSWORD: DEMO_PASSWORD })
+    .filter(([, v]) => v.startsWith("ChangeMe-") || v.length < 12)
+    .map(([k]) => k);
+  if (weak.length) {
+    console.error(`[seed] refusing to seed production with default or short passwords: ${weak.join(", ")}`);
+    process.exit(1);
+  }
+}
 
 type InstrumentSeed = [symbol: string, name: string, assetClass: AssetClass, currency: string, exchange: string | null];
 
