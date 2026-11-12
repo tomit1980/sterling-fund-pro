@@ -2,7 +2,8 @@
 
 /**
  * Public market widgets consumed by the marketing site (Agent B) and the dashboard.
- * Both poll `/api/market/quotes` every 15 s and show the DemoBadge whenever the data is demo.
+ * Both poll `/api/market/quotes` every 15 s and show the DemoBadge whenever any shown price is demo; the
+ * ticker additionally tags each simulated pill when live and simulated prices are mixed.
  */
 import * as React from "react";
 import Link from "next/link";
@@ -25,6 +26,8 @@ export interface MarketTickerProps {
 /** Horizontal marquee of quote pills (symbol, price, change%). */
 export function MarketTicker({ symbols = TICKER_DEFAULT, className, speed = 40 }: MarketTickerProps) {
   const { list, loading, demo } = useQuotes(symbols);
+  // With a live provider the ticker can mix real and simulated prices; then each simulated pill is tagged.
+  const mixed = demo && list.some((q) => q.source !== "demo");
   const items = list.length ? list : symbols.map((s) => ({ symbol: s } as Partial<Quote> & { symbol: string }));
   // Duplicate the track so the translateX(-50%) marquee loops seamlessly.
   const track = [...items, ...items];
@@ -56,6 +59,11 @@ export function MarketTicker({ symbols = TICKER_DEFAULT, className, speed = 40 }
                   <>
                     <PriceText value={q.price} assetClass={q.assetClass} className="text-ink-700" />
                     <ChangeText value={q.changePct ?? 0} icon={false} />
+                    {mixed && q.source === "demo" && (
+                      <span className="rounded border border-warn-500/30 bg-warn-500/15 px-1 text-[10px] font-medium uppercase text-warn-500" data-testid="demo-tag">
+                        Demo
+                      </span>
+                    )}
                   </>
                 )}
               </Link>
@@ -117,7 +125,14 @@ export function MarketOverviewCard({ className, symbolsByClass, title = "Market 
                         <p className="font-semibold text-ink-900">{s}</p>
                         <p className="truncate text-xs text-ink-500">{q?.name ?? (loading ? "Loading…" : "—")}</p>
                       </div>
-                      {q?.spark ? <Sparkline values={q.spark} width={88} height={26} /> : <Skeleton className="h-6 w-[88px]" />}
+                      {q?.spark ? (
+                        <Sparkline values={q.spark} width={88} height={26} />
+                      ) : q ? (
+                        // Live quotes carry no illustrative sparkline; keep the column width.
+                        <span className="w-[88px]" aria-hidden />
+                      ) : (
+                        <Skeleton className="h-6 w-[88px]" />
+                      )}
                       <div className="w-28 text-right">
                         {q ? (
                           <>
