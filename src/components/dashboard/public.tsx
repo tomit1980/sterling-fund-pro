@@ -2,8 +2,8 @@
 
 /**
  * Public market widgets consumed by the marketing site (Agent B) and the dashboard.
- * Both poll `/api/market/quotes` every 15 s and show the DemoBadge whenever any shown price is demo; the
- * ticker additionally tags each simulated pill when live and simulated prices are mixed.
+ * Both poll `/api/market/quotes` every 15 s and show the DemoBadge whenever any shown price is demo. When a
+ * live provider serves some symbols, the ticker shows only those live prices and drops the simulated ones.
  */
 import * as React from "react";
 import Link from "next/link";
@@ -14,7 +14,8 @@ import { ASSET_CLASS_LABELS, type AssetClass, type Quote } from "@/lib/market/ty
 import { ChangeText, PriceText } from "./price-cells";
 import { useQuotes } from "./use-quotes";
 
-const TICKER_DEFAULT = ["SPX", "NDX", "AAPL", "MSFT", "NVDA", "TSLA", "SPY", "QQQ", "EURUSD", "GBPUSD", "BTCUSD", "ETHUSD", "XAUUSD", "WTIUSD"];
+// Stocks/ETFs first so a live ticker (stocks and ETFs only on Finnhub's free plan) still has enough items.
+const TICKER_DEFAULT = ["SPX", "NDX", "AAPL", "MSFT", "NVDA", "TSLA", "AMZN", "GOOGL", "META", "SPY", "QQQ", "EURUSD", "GBPUSD", "BTCUSD", "ETHUSD", "XAUUSD", "WTIUSD"];
 
 export interface MarketTickerProps {
   symbols?: string[];
@@ -25,10 +26,13 @@ export interface MarketTickerProps {
 
 /** Horizontal marquee of quote pills (symbol, price, change%). */
 export function MarketTicker({ symbols = TICKER_DEFAULT, className, speed = 40 }: MarketTickerProps) {
-  const { list, loading, demo } = useQuotes(symbols);
-  // With a live provider the ticker can mix real and simulated prices; then each simulated pill is tagged.
-  const mixed = demo && list.some((q) => q.source !== "demo");
-  const items = list.length ? list : symbols.map((s) => ({ symbol: s } as Partial<Quote> & { symbol: string }));
+  const { list, loading } = useQuotes(symbols);
+  // With a live provider the ticker shows only real prices; simulated ones are dropped instead of tagged.
+  // With the demo provider everything is simulated, so all items show under a DEMO DATA badge.
+  const live = list.filter((q) => q.source !== "demo");
+  const shown = live.length ? live : list;
+  const demo = shown.some((q) => q.source === "demo");
+  const items = shown.length ? shown : symbols.map((s) => ({ symbol: s } as Partial<Quote> & { symbol: string }));
   // Duplicate the track so the translateX(-50%) marquee loops seamlessly.
   const track = [...items, ...items];
   const duration = Math.max(20, Math.round((items.length * 170) / speed));
@@ -59,11 +63,6 @@ export function MarketTicker({ symbols = TICKER_DEFAULT, className, speed = 40 }
                   <>
                     <PriceText value={q.price} assetClass={q.assetClass} className="text-ink-700" />
                     <ChangeText value={q.changePct ?? 0} icon={false} />
-                    {mixed && q.source === "demo" && (
-                      <span className="rounded border border-warn-500/30 bg-warn-500/15 px-1 text-[10px] font-medium uppercase text-warn-500" data-testid="demo-tag">
-                        Demo
-                      </span>
-                    )}
                   </>
                 )}
               </Link>
