@@ -27,7 +27,11 @@ if (!process.env.NEXT_PUBLIC_SITE_URL && process.env.VERCEL_PROJECT_PRODUCTION_U
   process.env.NEXT_PUBLIC_SITE_URL = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
   console.log(`[vercel-build] NEXT_PUBLIC_SITE_URL defaulted to ${process.env.NEXT_PUBLIC_SITE_URL}`);
 }
-for (const key of ["APP_SECRET", "APP_ENCRYPTION_KEY", "NEXT_PUBLIC_SITE_URL"]) {
+// DERIVE_APP_KEYS=true derives both app keys from DATABASE_URL at runtime (see src/lib/env.ts).
+const derive = process.env.DERIVE_APP_KEYS === "true";
+if (derive) console.log("[vercel-build] DERIVE_APP_KEYS=true: APP_SECRET/APP_ENCRYPTION_KEY derived from DATABASE_URL when unset");
+const requiredKeys = derive ? ["NEXT_PUBLIC_SITE_URL"] : ["APP_SECRET", "APP_ENCRYPTION_KEY", "NEXT_PUBLIC_SITE_URL"];
+for (const key of requiredKeys) {
   if (!process.env[key]) {
     console.error(`[vercel-build] ${key} is not set; add it in the project's environment variables.`);
     process.exit(1);

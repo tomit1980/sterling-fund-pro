@@ -49,6 +49,13 @@ production otherwise. The seeded logins are the admin, support-agent and demo-us
 6. **Deployments → ⋯ on the failed deployment → Redeploy.** The build runs `prisma generate` →
    `prisma migrate deploy` → `prisma db seed` → `next build`.
 
+**No-paste variant.** Instead of pasting `APP_SECRET` and `APP_ENCRYPTION_KEY`, set only `DERIVE_APP_KEYS=true`.
+The app then derives both keys from `DATABASE_URL` with HKDF-SHA256, so no secret is ever typed into a web form.
+The seeded logins are then created from a workstation with `npx prisma db seed` against the production database
+instead of `SEED_ON_BUILD`. Trade-off: whoever holds the database URL can derive the keys, and rotating the
+database password ends all sessions and makes stored MFA secrets unreadable. For a production launch, set
+explicit keys; explicit values always take precedence.
+
 `NEXT_PUBLIC_SITE_URL` is optional on Vercel: when unset, the build uses the project's production domain
 (`VERCEL_PROJECT_PRODUCTION_URL`). Set it only for a custom domain. `SEED_ON_BUILD=true` can stay; re-seeding
 resets the seeded users' passwords to the env values, so delete it if those passwords are changed in the app.
