@@ -4,6 +4,9 @@ An original, production-grade financial-platform website: marketing site, legal 
 management, support/lead capture and a clearly labelled **demo** trading dashboard. Built with Next.js 16,
 TypeScript, Tailwind CSS 4, Prisma 7 and PostgreSQL.
 
+**Live demo:** https://sterling-fund-pro.vercel.app (Vercel Hobby + Prisma Postgres free tier; see
+[docs/deployment.md](docs/deployment.md)).
+
 > **Scope guard.** Order execution, custody, deposits and withdrawals are intentionally **not implemented** and
 > their controls are disabled in the UI. Every price, balance, position and transaction is marked **DEMO DATA**
 > until a licensed market-data provider and regulated integrations are connected. No licence numbers, awards or

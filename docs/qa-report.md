@@ -60,3 +60,24 @@ mobile) and QA agent captures sit in the session scratchpad.
 - Finnhub provider untested (no API key). Email delivery untested against a real SMTP server (dev mailbox only).
 - QA probes left test users (`qa-*@example.com`) and changed the demo application to UNDER_REVIEW in the local
   dev database; `npm run db:seed` is idempotent and does not reset them.
+
+## 5. Live deployment (2026-11-12)
+
+https://sterling-fund-pro.vercel.app, built from commit 9033614. Vercel Hobby (team "Achiles", account
+tomit1980), Prisma Postgres free tier in Singapore, `DERIVE_APP_KEYS=true`. Migrations and seed were run from a
+workstation against the production database. Checks run with curl and Chrome against the live site:
+
+| Check | Result |
+|---|---|
+| Home, platform, 3 account pages, 4 legal pages, contact, support, login, register, forgot-password | PASS (200) |
+| `/dashboard`, `/admin` without a session | PASS (307 to `/login?next=…`) |
+| `/dev/mailbox` in production | PASS (404) |
+| Security headers: nonce CSP with `strict-dynamic`, HSTS preload, `X-Frame-Options: DENY`, `nosniff`, no `X-Powered-By` | PASS |
+| `/api/market/quotes?symbols=AAPL` returns `demo: true` | PASS |
+| Cross-origin POST to `/api/auth/login` | PASS (403) |
+| Same-origin POST with empty body | PASS (400 validation) |
+| Browser console on `/` and `/platform` | PASS (no errors, CSP allows hydration) |
+| Seeded logins (admin, support, demo) sign in | NOT RUN: the agent may not enter passwords on a production site; owner to confirm |
+| New-user email verification | BLOCKED: no `SMTP_URL`, emails are stored in the database only |
+
+Screenshot: `docs/screenshots/live/home-desktop.jpg`.
