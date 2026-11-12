@@ -255,6 +255,7 @@ export function PriceChart({
           </div>
           <div className="flex items-center gap-2">
             {demo && <DemoBadge />}
+            {demo && <span className="hidden text-[11px] text-ink-500 sm:inline">Illustrative, not real price history</span>}
             <div className="inline-flex rounded-md border border-line bg-surface-1 p-0.5" role="group" aria-label="Chart style">
               <button
                 type="button"

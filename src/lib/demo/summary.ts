@@ -70,6 +70,7 @@ export async function getWatchlist(userId: string): Promise<{ items: WatchlistEn
     createdAt: r.createdAt.toISOString(),
     quote: qmap.get(r.symbol) ?? null,
   }));
-  const demo = quotes.every((q) => q.source === "demo");
-  return { items, source: demo ? "demo" : provider.name, demo };
+  const demo = quotes.length === 0 || quotes.some((q) => q.source === "demo");
+  const allDemo = quotes.every((q) => q.source === "demo");
+  return { items, source: allDemo ? "demo" : provider.name, demo };
 }

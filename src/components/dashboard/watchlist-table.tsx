@@ -39,7 +39,9 @@ export function WatchlistTable({ items: initialItems, max = 50, compact = false,
   const [busy, setBusy] = React.useState<string | null>(null);
   const symbols = React.useMemo(() => items.map((i) => i.symbol), [items]);
   const initialQuotes = React.useMemo(() => initialItems.map((i) => i.quote).filter((q): q is Quote => Boolean(q)), [initialItems]);
-  const { quotes, demo } = useQuotes(symbols, { spark: !compact, initial: initialQuotes.length ? initialQuotes : undefined });
+  const { quotes, list, demo } = useQuotes(symbols, { spark: !compact, initial: initialQuotes.length ? initialQuotes : undefined });
+  const anyLive = list.some((x) => x.source !== "demo");
+  const mixed = demo && anyLive;
 
   // Re-sync when the server re-renders with fresh items (router.refresh) - derived-state pattern.
   const [prevInitial, setPrevInitial] = React.useState(initialItems);
@@ -89,6 +91,8 @@ export function WatchlistTable({ items: initialItems, max = 50, compact = false,
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2 text-xs text-ink-500">
           {demo && <DemoBadge />}
+          {mixed && <span>on marked rows ·</span>}
+          {anyLive && !compact && <span>Stock and ETF quotes by Finnhub ·</span>}
           <span>
             {items.length} / {max} instruments
           </span>
@@ -140,6 +144,7 @@ export function WatchlistTable({ items: initialItems, max = 50, compact = false,
                 {!compact && <TD>{q?.spark ? <Sparkline values={q.spark} /> : <span className="text-ink-300">—</span>}</TD>}
                 <TD align="right" numeric className="text-ink-900">
                   {q ? <PriceText value={q.price} assetClass={q.assetClass} /> : "—"}
+                  {mixed && q?.source === "demo" && <DemoBadge className="ml-2" />}
                 </TD>
                 <TD align="right" numeric>
                   {q ? <ChangeText value={q.changePct} /> : "—"}

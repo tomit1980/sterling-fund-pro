@@ -32,7 +32,9 @@ export function MarketTable({ instruments, initialQuotes, className, initialAsse
 
   // Poll quotes for the visible rows only (max 60 per request).
   const symbols = React.useMemo(() => visible.slice(0, 60).map((i) => i.symbol), [visible]);
-  const { quotes, demo, loading } = useQuotes(symbols, { spark: true, initial: initialQuotes });
+  const { quotes, list, demo, loading } = useQuotes(symbols, { spark: true, initial: initialQuotes });
+  const anyLive = list.some((x) => x.source !== "demo");
+  const mixed = demo && anyLive;
 
   const rows = React.useMemo(() => {
     const dir = sort.dir === "asc" ? 1 : -1;
@@ -73,6 +75,8 @@ export function MarketTable({ instruments, initialQuotes, className, initialAsse
         </Select>
         <div className="flex items-center gap-2 text-xs text-ink-500">
           {demo && <DemoBadge />}
+          {mixed && <span>on marked rows ·</span>}
+          {anyLive && <span>Stock and ETF quotes by Finnhub ·</span>}
           <span>{visible.length} instruments</span>
         </div>
       </div>
@@ -103,6 +107,7 @@ export function MarketTable({ instruments, initialQuotes, className, initialAsse
                 <TD>{quote?.spark ? <Sparkline values={quote.spark} /> : <span className="text-ink-300">{loading ? "…" : "—"}</span>}</TD>
                 <TD align="right" numeric className="text-ink-900">
                   {quote ? <PriceText value={quote.price} assetClass={quote.assetClass} /> : "—"}
+                  {mixed && quote?.source === "demo" && <DemoBadge className="ml-2" />}
                 </TD>
                 <TD align="right" numeric>
                   {quote ? <ChangeText value={quote.changePct} /> : "—"}

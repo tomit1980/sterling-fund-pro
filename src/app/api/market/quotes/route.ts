@@ -18,7 +18,8 @@ const SPARK_POINTS = 24;
 
 /**
  * GET /api/market/quotes?symbols=AAPL,MSFT
- * Public; rate-limited by IP; never cached by intermediaries. Demo data is flagged with `demo: true`.
+ * Public; rate-limited by IP; never cached by intermediaries. `demo: true` when any quote is simulated;
+ * each quote's `source` says which ones.
  */
 export const GET = handler(async (req: NextRequest) => {
   await enforceRateLimit(RATE_LIMITS.market, clientIp(req));
@@ -38,7 +39,8 @@ export const GET = handler(async (req: NextRequest) => {
       q.spark = demoCandles(q.symbol, "1W", now, info).slice(-SPARK_POINTS).map((c) => c.close);
     }
   }
-  const demo = quotes.every((q) => q.source === "demo");
+  // `demo` is true when ANY quote is simulated, so a mixed list is never presented as all-live.
+  const demo = quotes.some((q) => q.source === "demo");
   return NextResponse.json(
     { ok: true, data: { quotes, source: provider.name, asOf: new Date().toISOString(), demo } },
     { headers: { "Cache-Control": "no-store" } },

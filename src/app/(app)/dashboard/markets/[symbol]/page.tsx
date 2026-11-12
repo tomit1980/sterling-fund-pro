@@ -53,7 +53,7 @@ export default async function SymbolPage({ params }: { params: Params }) {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Instrument" demo={false} description="Demo quotes and candles. Order execution is disabled on this platform." className="mb-2" />
+      <PageHeader title="Instrument" demo={false} description="Prices marked DEMO DATA are simulated; charts and statistics are illustrative. Order execution is disabled on this platform." className="mb-2" />
       <QuoteHeader instrument={instrument} initialQuote={quote} inWatchlist={Boolean(watch)} />
       <Card>
         <PriceChart symbol={symbol} assetClass={instrument.assetClass} initialRange="1M" initialCandles={series.candles} height={420} />

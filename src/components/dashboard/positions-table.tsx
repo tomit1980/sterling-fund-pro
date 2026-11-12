@@ -37,7 +37,7 @@ const COLUMNS: Array<{ key: SortKey; label: string; align?: "right"; compactHidd
 /** Sortable, filterable positions table with 15-s live demo quotes. */
 export function PositionsTable({ positions, initialQuotes, cash = 0, currency = "USD", compact = false, className, pollMs }: PositionsTableProps) {
   const symbols = React.useMemo(() => [...new Set(positions.map((p) => p.symbol))], [positions]);
-  const { list: quotes, demo } = useQuotes(symbols, { initial: initialQuotes, intervalMs: pollMs });
+  const { list: quotes } = useQuotes(symbols, { initial: initialQuotes, intervalMs: pollMs });
   const [sort, setSort] = React.useState<{ key: SortKey; dir: "asc" | "desc" }>({ key: "marketValue", dir: "desc" });
   const [assetClass, setAssetClass] = React.useState<AssetClass | "ALL">("ALL");
 
@@ -61,7 +61,8 @@ export function PositionsTable({ positions, initialQuotes, cash = 0, currency = 
     <div className={cn("space-y-3", className)} data-testid="positions-table">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          {demo && <DemoBadge />}
+          {/* Holdings are fictional even when prices are live, so the badge is unconditional. */}
+          <DemoBadge />
           <span className="text-xs text-ink-500">
             {rows.length} of {valuation.positions.length} positions
           </span>
