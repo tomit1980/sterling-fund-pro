@@ -71,7 +71,7 @@ export function CandleSparkline({ className }: { className?: string }) {
 export function PlatformPreview({ className }: { className?: string }) {
   return (
     <div className={cn("relative mx-auto w-full max-w-lg", className)} data-testid="platform-preview" aria-label="Platform preview with demo data">
-      <div className="pointer-events-none absolute -inset-8 rounded-[2rem] bg-radial-brand opacity-80 blur-2xl" aria-hidden />
+      <div className="pointer-events-none absolute -inset-4 sm:-inset-8 rounded-[2rem] bg-radial-brand opacity-80 blur-2xl" aria-hidden />
 
       {/* Chart card */}
       <div className="glass relative z-10 rounded-lg p-5 shadow-lg">

@@ -1,0 +1,161 @@
+[WebServer] ⚠ Warning: Next.js ignored package-lock.json in C:\Users\USER because it is outside the current Git repository (C:\Users\USER\Desktop\Projects\sterling-fund-pro).
+[WebServer]  To use this directory, set `outputFileTracingRoot` in your Next.js config.
+[WebServer] 
+
+Running 42 tests using 1 worker
+
+  ok  1 [desktop] › tests\e2e\auth.spec.ts:5:3 › account lifecycle › register → verify email → login → dashboard → logout (3.4s)
+  x   2 [desktop] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token (1.0m)
+  ok  3 [desktop] › tests\e2e\auth.spec.ts:67:3 › account lifecycle › seeded demo user can log in and see the demo portfolio (2.0s)
+  ok  4 [desktop] › tests\e2e\auth.spec.ts:77:3 › account lifecycle › register form validates and blocks weak passwords (486ms)
+  ok  5 [desktop] › tests\e2e\authorization.spec.ts:5:3 › authorization and isolation › unauthenticated requests are rejected (67ms)
+  ok  6 [desktop] › tests\e2e\authorization.spec.ts:17:3 › authorization and isolation › a USER cannot reach admin pages or APIs (841ms)
+  ok  7 [desktop] › tests\e2e\authorization.spec.ts:28:3 › authorization and isolation › watchlists are isolated between accounts (1.1s)
+  ok  8 [desktop] › tests\e2e\authorization.spec.ts:67:3 › authorization and isolation › admin can review a submitted application (578ms)
+  ok  9 [desktop] › tests\e2e\authorization.spec.ts:76:3 › authorization and isolation › security headers are present (29ms)
+  ok 10 [desktop] › tests\e2e\authorization.spec.ts:86:3 › authorization and isolation › cross-site mutation is rejected (CSRF) (12ms)
+  ok 11 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard with DEMO marker and no console errors (860ms)
+  ok 12 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets with DEMO marker and no console errors (937ms)
+  ok 13 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/markets/AAPL with DEMO marker and no console errors (911ms)
+  ok 14 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/watchlist with DEMO marker and no console errors (663ms)
+  ok 15 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/portfolio with DEMO marker and no console errors (769ms)
+  ok 16 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/positions with DEMO marker and no console errors (692ms)
+  ok 17 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/transactions with DEMO marker and no console errors (719ms)
+  ok 18 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/application with DEMO marker and no console errors (723ms)
+  ok 19 [desktop] › tests\e2e\dashboard.spec.ts:22:5 › dashboard › renders /dashboard/settings with DEMO marker and no console errors (708ms)
+  ok 20 [desktop] › tests\e2e\dashboard.spec.ts:34:3 › dashboard › price chart renders a canvas and range switching works (793ms)
+  ok 21 [desktop] › tests\e2e\dashboard.spec.ts:42:3 › dashboard › market quotes API is public, rate-limited and labelled demo (353ms)
+  ok 22 [desktop] › tests\e2e\dashboard.spec.ts:51:3 › dashboard › trade/deposit/withdraw actions are disabled (594ms)
+  ok 23 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders / without console errors (1.0s)
+  ok 24 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/individual without console errors (585ms)
+  ok 25 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/corporate without console errors (553ms)
+  ok 26 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /accounts/smsf without console errors (601ms)
+  ok 27 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /platform without console errors (667ms)
+  ok 28 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/kyc-policy without console errors (548ms)
+  ok 29 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/regulation without console errors (436ms)
+  ok 30 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/risk-disclaimer without console errors (529ms)
+  ok 31 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /legal/privacy-policy without console errors (509ms)
+  ok 32 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /contact without console errors (484ms)
+  ok 33 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /support without console errors (550ms)
+  ok 34 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /login without console errors (385ms)
+  ok 35 [desktop] › tests\e2e\marketing.spec.ts:21:3 › renders /register without console errors (530ms)
+  ok 36 [desktop] › tests\e2e\marketing.spec.ts:37:1 › primary navigation links resolve (966ms)
+  ok 37 [desktop] › tests\e2e\marketing.spec.ts:49:1 › platform preview and market widgets are labelled DEMO DATA (749ms)
+  ok 38 [desktop] › tests\e2e\marketing.spec.ts:56:1 › regulation page does not show unverified licence details (343ms)
+  x  39 [desktop] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox (6.4s)
+  ok 40 [desktop] › tests\e2e\support.spec.ts:24:3 › support and lead management › contact form rejects a filled honeypot without storing (44ms)
+  ok 41 [desktop] › tests\e2e\support.spec.ts:38:3 › support and lead management › support status never reports online without an agent heartbeat (16ms)
+  x  42 [desktop] › tests\e2e\support.spec.ts:47:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply (1.0m)
+
+
+  1) [desktop] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /reset|update|change/i })
+
+
+      56 |     await page.getByRole("textbox", { name: /^new password|^password/i }).first().fill(newPassword);
+      57 |     await page.getByRole("textbox", { name: /confirm/i }).fill(newPassword);
+    > 58 |     await page.getByRole("button", { name: /reset|update|change/i }).click();
+         |                                                                      ^
+      59 |     await expect(page.getByText(/password (has been )?(reset|updated)|sign in/i).first()).toBeVisible();
+      60 |
+      61 |     const old = await request.post("/api/auth/login", { data: { email, password } });
+        at C:\Users\USER\Desktop\Projects\sterling-fund-pro\tests\e2e\auth.spec.ts:58:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-account-lifecycle-password-reset-via-emailed-token-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-account-lifecycle-password-reset-via-emailed-token-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\auth-account-lifecycle-password-reset-via-emailed-token-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\auth-account-lifecycle-password-reset-via-emailed-token-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('E2E enquiry 1794475561415')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('E2E enquiry 1794475561415') with timeout 5000ms
+      - waiting for getByText('E2E enquiry 1794475561415')
+
+
+      18 |     await apiLogin(admin.request, ADMIN.email, ADMIN.password);
+      19 |     await admin.goto("/admin/support");
+    > 20 |     await expect(admin.getByText(subject)).toBeVisible();
+         |                                            ^
+      21 |     await adminCtx.close();
+      22 |   });
+      23 |
+        at C:\Users\USER\Desktop\Projects\sterling-fund-pro\tests\e2e\support.spec.ts:20:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\support-support-and-lead-m-8dd09--appears-in-the-admin-inbox-desktop\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\support-support-and-lead-m-8dd09--appears-in-the-admin-inbox-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\support-support-and-lead-m-8dd09--appears-in-the-admin-inbox-desktop\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\support-support-and-lead-m-8dd09--appears-in-the-admin-inbox-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\support-support-and-lead-m-8dd09--appears-in-the-admin-inbox-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests\e2e\support.spec.ts:47:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for getByTestId('chat-panel').getByRole('button', { name: /start|send/i })
+
+
+      54 |     const opening = `Hello, is the platform in demo mode? ${Date.now()}`;
+      55 |     await widget.getByRole("textbox", { name: /message/i }).fill(opening);
+    > 56 |     await widget.getByRole("button", { name: /start|send/i }).click();
+         |                                                               ^
+      57 |     await expect(widget.getByText(opening)).toBeVisible();
+      58 |
+      59 |     const adminCtx = await browser.newContext();
+        at C:\Users\USER\Desktop\Projects\sterling-fund-pro\tests\e2e\support.spec.ts:56:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\support-support-and-lead-m-baeb7-lies-visitor-sees-the-reply-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [desktop] › tests\e2e\auth.spec.ts:41:3 › account lifecycle › password reset via emailed token ─
+    [desktop] › tests\e2e\support.spec.ts:5:3 › support and lead management › contact form persists and appears in the admin inbox 
+    [desktop] › tests\e2e\support.spec.ts:47:3 › support and lead management › live chat: visitor starts a chat, agent replies, visitor sees the reply 
+  39 passed (2.7m)
+E2E_EXIT=1

@@ -2,30 +2,8 @@ import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === "production";
 
-/**
- * Content Security Policy.
- * - 'unsafe-inline' for styles is required by Next font loading + Tailwind inline style attributes
- *   (lightweight-charts sets inline styles on its canvas container).
- * - Scripts: 'self' only in production; dev needs eval for React Refresh.
- */
-const csp = [
-  "default-src 'self'",
-  `script-src 'self' ${isProd ? "" : "'unsafe-eval' 'unsafe-inline'"}`.trim(),
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com data:",
-  "img-src 'self' data: blob:",
-  "connect-src 'self'",
-  "frame-ancestors 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "object-src 'none'",
-  isProd ? "upgrade-insecure-requests" : "",
-]
-  .filter(Boolean)
-  .join("; ");
-
+// Content-Security-Policy is emitted per request (with a nonce) by src/proxy.ts.
 const securityHeaders = [
-  { key: "Content-Security-Policy", value: csp },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },

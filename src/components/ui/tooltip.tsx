@@ -36,9 +36,10 @@ export function Tooltip({ content, children, side = "top", className }: TooltipP
         role="tooltip"
         id={id}
         className={cn(
-          "pointer-events-none absolute left-1/2 z-40 w-max max-w-xs -translate-x-1/2 rounded-md border border-line-strong bg-surface-3 px-3 py-2 text-xs leading-snug text-ink-900 shadow-md transition-opacity",
+          // `hidden` (not just opacity-0) so the closed tooltip never adds horizontal scroll near the viewport edge.
+          "pointer-events-none absolute left-1/2 z-40 w-max max-w-xs -translate-x-1/2 rounded-md border border-line-strong bg-surface-3 px-3 py-2 text-xs leading-snug text-ink-900 shadow-md",
           side === "top" ? "bottom-full mb-2" : "top-full mt-2",
-          open ? "opacity-100" : "opacity-0",
+          open ? "block" : "hidden",
         )}
       >
         {content}

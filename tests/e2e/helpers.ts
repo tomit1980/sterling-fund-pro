@@ -32,7 +32,11 @@ export async function latestMailLink(request: APIRequestContext, to: string, mat
     const idx = html.indexOf(to);
     if (idx >= 0) {
       const candidates = links.filter((l) => matcher.test(l));
-      if (candidates.length) return candidates[0];
+      // Email links carry NEXT_PUBLIC_SITE_URL; keep only path + query so page.goto resolves against baseURL.
+      if (candidates.length) {
+        const u = new URL(candidates[0], "http://localhost");
+        return `${u.pathname}${u.search}`;
+      }
     }
     await new Promise((r) => setTimeout(r, 500));
   }

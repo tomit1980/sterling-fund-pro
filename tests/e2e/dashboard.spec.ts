@@ -34,7 +34,7 @@ test.describe("dashboard", () => {
   test("price chart renders a canvas and range switching works", async ({ page }) => {
     await page.goto("/dashboard/markets/AAPL");
     await expect(page.locator("canvas").first()).toBeVisible({ timeout: 15_000 });
-    await page.getByRole("button", { name: /^1M$/ }).click();
+    await page.getByRole("tab", { name: /^1W$/ }).click();
     await expect(page.locator("canvas").first()).toBeVisible();
     await expect(page.getByText(/TradingView/)).toBeVisible();
   });

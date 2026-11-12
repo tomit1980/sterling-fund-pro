@@ -27,11 +27,12 @@ export interface ChatMessage {
 export interface ChatConversation {
   id: string;
   status: string;
+  messages?: ChatMessage[];
 }
 
 interface ConversationPayload {
   conversation: ChatConversation;
-  messages: ChatMessage[];
+  messages?: ChatMessage[];
 }
 
 interface ApiEnvelope<T> {
@@ -140,7 +141,9 @@ function ChatBody({ online }: { online: boolean }) {
   const applyPayload = React.useCallback((d: ConversationPayload | undefined) => {
     if (!d?.conversation) return false;
     setConversation(d.conversation);
-    setMessages(Array.isArray(d.messages) ? d.messages : []);
+    // The API returns messages nested on the conversation; a top-level list is also accepted.
+    const list = Array.isArray(d.messages) ? d.messages : Array.isArray(d.conversation.messages) ? d.conversation.messages : [];
+    setMessages(list);
     return true;
   }, []);
 

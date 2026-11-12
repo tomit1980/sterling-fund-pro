@@ -29,7 +29,7 @@ export default async function DashboardOverviewPage() {
     <div className="space-y-6">
       <PageHeader title={`Welcome back, ${user.name.split(" ")[0]}`} description="Your demo workspace. Prices, balances and positions are illustrative and refresh every 15 seconds." />
 
-      <div className="grid gap-6 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <BalanceCard
           className="xl:col-span-2"
           totalValue={v.totalValue}
@@ -74,7 +74,7 @@ export default async function DashboardOverviewPage() {
         <PriceChart symbol={chartSymbol} assetClass={chartInstrument?.assetClass} initialRange="1M" initialCandles={series.candles} height={320} />
       </Card>
 
-      <div className="grid gap-6 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>Watchlist</CardTitle>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { headers } from "next/headers";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -21,7 +22,10 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // Reading request headers opts every route into dynamic rendering, which the per-request CSP nonce
+  // (set in src/proxy.ts) requires so Next can attach it to its inline scripts.
+  await headers();
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="flex min-h-full flex-col bg-surface-0 text-ink-900">{children}</body>

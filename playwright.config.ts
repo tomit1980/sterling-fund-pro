@@ -17,8 +17,9 @@ export default defineConfig({
   },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },
-    { name: "tablet", use: { ...devices["iPad Mini"] } },
-    { name: "mobile", use: { ...devices["Pixel 7"] } },
+    // Chromium-only so a single browser download covers all projects; viewports match iPad Mini / Pixel 7.
+    { name: "tablet", use: { ...devices["Desktop Chrome"], viewport: { width: 768, height: 1024 }, hasTouch: true, isMobile: true } },
+    { name: "mobile", use: { ...devices["Pixel 7"], defaultBrowserType: "chromium" } },
   ],
   webServer: process.env.E2E_BASE_URL
     ? undefined
@@ -26,6 +27,7 @@ export default defineConfig({
         command: `npx next start -p ${PORT}`,
         url: baseURL,
         reuseExistingServer: !process.env.CI,
+        env: { ...process.env, ENABLE_DEV_MAILBOX: "true", TRUSTED_PROXY_HOPS: "0", RATE_LIMIT_MULTIPLIER: "50" },
         timeout: 120_000,
       },
 });

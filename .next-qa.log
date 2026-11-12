@@ -1,0 +1,19 @@
+▲ Next.js 16.4.6
+- Local:         http://localhost:3200
+- Network:       http://10.66.0.2:3200
+✓ Ready in 473ms
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\USER because it is outside the current Git repository (C:\Users\USER\Desktop\Projects\sterling-fund-pro).
+ To use this directory, set `outputFileTracingRoot` in your Next.js config.
+
+✓ Running next.config.ts took 62ms
+[email] captured (no SMTP_URL) → demo@example.com · "Your application is under review — Sterling Fund Pro" · see /dev/mailbox
+[email] captured (no SMTP_URL) → chat-1794475791750-512998@example.com · "Re: Live chat" · see /dev/mailbox
+[email] captured (no SMTP_URL) → chat-1794475791750-512998@example.com · "Re: Live chat" · see /dev/mailbox
+[email] captured (no SMTP_URL) → demo@example.com · "Reset your Sterling Fund Pro password" · see /dev/mailbox
+[email] captured (no SMTP_URL) → qa-one@example.com · "Verify your email for Sterling Fund Pro" · see /dev/mailbox
+[email] captured (no SMTP_URL) → qa-two@example.com · "Verify your email for Sterling Fund Pro" · see /dev/mailbox
+[email] captured (no SMTP_URL) → qa-three@example.com · "Verify your email for Sterling Fund Pro" · see /dev/mailbox
+[email] captured (no SMTP_URL) → qa-one@example.com · "Reset your Sterling Fund Pro password" · see /dev/mailbox
+[email] captured (no SMTP_URL) → qa-t1-1693@example.com · "Verify your email for Sterling Fund Pro" · see /dev/mailbox
+[email] captured (no SMTP_URL) → qa-t2-4342@example.com · "Verify your email for Sterling Fund Pro" · see /dev/mailbox
+[email] captured (no SMTP_URL) → qa-t3-31455@example.com · "Verify your email for Sterling Fund Pro" · see /dev/mailbox

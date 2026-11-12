@@ -49,8 +49,15 @@ export async function consumeRateLimit(rule: RateLimitRule, identifier: string):
 }
 
 /** Throws ApiError(429) when exceeded. */
+/** Test environments can scale all limits up (never below 1) via RATE_LIMIT_MULTIPLIER. */
+function scaled(rule: RateLimitRule): RateLimitRule {
+  const m = Number.parseInt(process.env.RATE_LIMIT_MULTIPLIER ?? "1", 10);
+  if (!Number.isFinite(m) || m <= 1) return rule;
+  return { ...rule, limit: rule.limit * m };
+}
+
 export async function enforceRateLimit(rule: RateLimitRule, identifier: string): Promise<void> {
-  const r = await consumeRateLimit(rule, identifier);
+  const r = await consumeRateLimit(scaled(rule), identifier);
   if (!r.allowed) {
     const seconds = Math.max(1, Math.ceil((r.resetAt.getTime() - Date.now()) / 1000));
     throw new ApiError(429, "RATE_LIMITED", `Too many requests. Try again in ${seconds}s.`);

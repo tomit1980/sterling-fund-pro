@@ -1,0 +1,115 @@
+
+> sterling-fund-pro@0.1.0 build
+> prisma generate && next build
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 193ms
+
+▲ Next.js 16.4.6 (Turbopack)
+- Environments: .env
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\USER because it is outside the current Git repository (C:\Users\USER\Desktop\Projects\sterling-fund-pro).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+✓ Running next.config.ts took 43ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 5.5s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/64) ...
+  Generating static pages using 11 workers (16/64) 
+  Generating static pages using 11 workers (32/64) 
+  Generating static pages using 11 workers (48/64) 
+✓ Generating static pages using 11 workers (64/64) in 983ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /accounts/corporate
+├ ƒ /accounts/individual
+├ ƒ /accounts/smsf
+├ ƒ /admin
+├ ƒ /admin/applications
+├ ƒ /admin/applications/[id]
+├ ƒ /admin/audit
+├ ƒ /admin/support
+├ ƒ /admin/support/[id]
+├ ƒ /admin/users
+├ ƒ /api/account/application
+├ ƒ /api/account/mfa/disable
+├ ƒ /api/account/mfa/enable
+├ ƒ /api/account/mfa/setup
+├ ƒ /api/account/password
+├ ƒ /api/account/profile
+├ ƒ /api/account/sessions
+├ ƒ /api/account/sessions/[id]
+├ ƒ /api/admin/applications
+├ ƒ /api/admin/applications/[id]
+├ ƒ /api/admin/applications/[id]/review
+├ ƒ /api/admin/audit
+├ ƒ /api/admin/stats
+├ ƒ /api/admin/support
+├ ƒ /api/admin/support/[id]
+├ ƒ /api/admin/support/[id]/close
+├ ƒ /api/admin/support/[id]/reply
+├ ƒ /api/admin/users
+├ ƒ /api/admin/users/[id]
+├ ƒ /api/auth/forgot-password
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/auth/mfa/verify
+├ ƒ /api/auth/register
+├ ƒ /api/auth/resend-verification
+├ ƒ /api/auth/reset-password
+├ ƒ /api/auth/verify-email
+├ ƒ /api/dashboard/summary
+├ ƒ /api/dashboard/watchlist
+├ ƒ /api/market/candles
+├ ƒ /api/market/instruments
+├ ƒ /api/market/quotes
+├ ƒ /api/support/contact
+├ ƒ /api/support/conversations
+├ ƒ /api/support/conversations/current
+├ ƒ /api/support/conversations/current/messages
+├ ƒ /api/support/presence
+├ ƒ /api/support/status
+├ ƒ /check-email
+├ ƒ /contact
+├ ƒ /dashboard
+├ ƒ /dashboard/application
+├ ƒ /dashboard/markets
+├ ƒ /dashboard/markets/[symbol]
+├ ƒ /dashboard/portfolio
+├ ƒ /dashboard/positions
+├ ƒ /dashboard/settings
+├ ƒ /dashboard/transactions
+├ ƒ /dashboard/watchlist
+├ ƒ /dev/mailbox
+├ ƒ /forgot-password
+├ ƒ /legal/kyc-policy
+├ ƒ /legal/privacy-policy
+├ ƒ /legal/regulation
+├ ƒ /legal/risk-disclaimer
+├ ƒ /login
+├ ƒ /login/mfa
+├ ƒ /platform
+├ ƒ /register
+├ ƒ /reset-password
+├ ○ /robots.txt
+├ ○ /sitemap.xml
+├ ƒ /support
+└ ƒ /verify-email
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+BUILD_EXIT=0

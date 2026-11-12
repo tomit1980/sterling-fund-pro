@@ -53,9 +53,9 @@ test.describe("account lifecycle", () => {
     const reset = await latestMailLink(request, email, /reset-password\?token=/);
     await page.goto(reset);
     const newPassword = "Even-stronger-2026-z";
-    await page.getByLabel(/^new password|^password/i).first().fill(newPassword);
-    await page.getByLabel(/confirm/i).fill(newPassword);
-    await page.getByRole("button", { name: /reset|update|change/i }).click();
+    await page.getByRole("textbox", { name: /^new password|^password/i }).first().fill(newPassword);
+    await page.getByRole("textbox", { name: /confirm/i }).fill(newPassword);
+    await page.getByRole("button", { name: /set new password|reset|update/i }).click();
     await expect(page.getByText(/password (has been )?(reset|updated)|sign in/i).first()).toBeVisible();
 
     const old = await request.post("/api/auth/login", { data: { email, password } });

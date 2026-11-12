@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sterling Fund Pro
 
-## Getting Started
+An original, production-grade financial-platform website: marketing site, legal pages, secure account
+management, support/lead capture and a clearly labelled **demo** trading dashboard. Built with Next.js 16,
+TypeScript, Tailwind CSS 4, Prisma 7 and PostgreSQL.
 
-First, run the development server:
+> **Scope guard.** Order execution, custody, deposits and withdrawals are intentionally **not implemented** and
+> their controls are disabled in the UI. Every price, balance, position and transaction is marked **DEMO DATA**
+> until a licensed market-data provider and regulated integrations are connected. No licence numbers, awards or
+> testimonials are shown unless the business supplies verifiable ones through `src/config/site.ts`.
+
+## Quick start
+
+See [docs/setup.md](docs/setup.md). In short:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install && cp .env.example .env && npm run db:start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+then in another terminal `npm run db:migrate && npm run db:seed && npm run dev`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's inside
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Area | Routes | Notes |
+|------|--------|-------|
+| Marketing | `/`, `/accounts/{individual,corporate,smsf}`, `/platform`, `/contact`, `/support` | Responsive, dark/light theme, floating live-chat widget |
+| Legal | `/legal/{kyc-policy,regulation,risk-disclaimer,privacy-policy}` | Regulation page renders only verified fields from `site.ts` |
+| Auth | `/register`, `/verify-email`, `/login`, `/login/mfa`, `/forgot-password`, `/reset-password` | DB-backed sessions, bcrypt, TOTP MFA, single-use hashed tokens |
+| Dashboard | `/dashboard/**` | Markets, charts (Lightweight Charts), watchlist, portfolio, positions, transactions, application, settings |
+| Admin | `/admin/**` | Users, application review, support inbox (+ agent presence heartbeat), audit log |
+| Dev | `/dev/mailbox` | Captured emails when no SMTP is configured (development only) |
 
-## Learn More
+## Documentation
 
-To learn more about Next.js, take a look at the following resources:
+- [Setup](docs/setup.md) · [Deployment](docs/deployment.md) · [Design system](docs/design-system.md)
+- [Reference analysis](docs/reference-analysis.md) — what could and could not be verified about the reference site
+- [QA report](docs/qa-report.md) — PASS / FAIL / BLOCKED with evidence
+- [Design spec](docs/superpowers/specs/2026-11-12-sterling-fund-pro-design.md) · [Build plan](docs/superpowers/plans/2026-11-12-build-plan.md)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Testing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm test
+```
 
-## Deploy on Vercel
+```bash
+npm run build && npm run test:e2e
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Unit tests (Vitest) cover auth services, tokens, MFA, lockout, rate limiting, support status, validation, the
+demo market provider and portfolio valuation. Playwright covers the marketing pages, registration → verification →
+login → dashboard, password reset, contact form → admin inbox, live chat → agent reply, authorization and
+cross-account isolation, security headers and CSRF, at desktop, tablet and mobile viewports.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Licence notes
+
+Charts use [TradingView Lightweight Charts](https://github.com/tradingview/lightweight-charts) (Apache-2.0);
+the required attribution link is rendered beneath every chart. All logos, illustrations and copy in this
+repository are original.

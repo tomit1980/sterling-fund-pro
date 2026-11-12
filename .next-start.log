@@ -1,0 +1,8 @@
+▲ Next.js 16.4.6
+- Local:         http://localhost:3100
+- Network:       http://10.66.0.2:3100
+✓ Ready in 317ms
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\USER because it is outside the current Git repository (C:\Users\USER\Desktop\Projects\sterling-fund-pro).
+ To use this directory, set `outputFileTracingRoot` in your Next.js config.
+
+✓ Running next.config.ts took 54ms

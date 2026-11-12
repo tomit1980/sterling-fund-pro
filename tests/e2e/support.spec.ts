@@ -6,17 +6,19 @@ test.describe("support and lead management", () => {
     const email = uniqueEmail("contact");
     const subject = `E2E enquiry ${Date.now()}`;
     await page.goto("/contact");
+    // The API rejects submissions faster than a human could type (anti-bot timing check).
+    await page.waitForTimeout(1800);
     await page.getByLabel(/full name|^name/i).fill("Contact Tester");
     await page.getByLabel(/email/i).fill(email);
     await page.getByLabel(/subject/i).fill(subject);
-    await page.getByLabel(/message/i).fill("I would like to know more about SMSF accounts and your demo platform.");
+    await page.getByRole("textbox", { name: /message/i }).fill("I would like to know more about SMSF accounts and your demo platform.");
     await page.getByRole("button", { name: /send|submit/i }).click();
     await expect(page.getByText(/thank you|received|we('|’)ll be in touch/i).first()).toBeVisible();
 
     const adminCtx = await browser.newContext();
     const admin = await adminCtx.newPage();
     await apiLogin(admin.request, ADMIN.email, ADMIN.password);
-    await admin.goto("/admin/support");
+    await admin.goto("/admin/support?status=ALL&channel=CONTACT_FORM");
     await expect(admin.getByText(subject)).toBeVisible();
     await adminCtx.close();
   });
@@ -46,14 +48,14 @@ test.describe("support and lead management", () => {
 
   test("live chat: visitor starts a chat, agent replies, visitor sees the reply", async ({ page, browser }) => {
     await page.goto("/support");
-    await page.getByRole("button", { name: /chat|support/i }).first().click();
-    const widget = page.getByTestId("support-widget");
+    await page.getByTestId("chat-launcher").click();
+    const widget = page.getByTestId("chat-panel");
     await expect(widget).toBeVisible();
     await widget.getByLabel(/name/i).fill("Chat Visitor");
     await widget.getByLabel(/email/i).fill(uniqueEmail("chat"));
     const opening = `Hello, is the platform in demo mode? ${Date.now()}`;
-    await widget.getByLabel(/message/i).fill(opening);
-    await widget.getByRole("button", { name: /start|send/i }).click();
+    await widget.getByRole("textbox", { name: /message/i }).fill(opening);
+    await widget.getByRole("button", { name: /start chat|leave a message|send/i }).click();
     await expect(widget.getByText(opening)).toBeVisible();
 
     const adminCtx = await browser.newContext();

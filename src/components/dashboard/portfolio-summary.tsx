@@ -37,7 +37,7 @@ export function PortfolioSummary({ valuation, currency = "USD", className }: Por
         <Stat label="Cash (demo)" value={formatMoney(valuation.cash, currency)} hint={`${valuation.positions.length} open positions`} />
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>Allocation</CardTitle>

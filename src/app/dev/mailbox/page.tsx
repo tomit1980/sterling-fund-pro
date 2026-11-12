@@ -19,7 +19,7 @@ function extractLinks(text: string): string[] {
 
 /** Development-only view of captured outbound email (no SMTP configured). Hidden in production. */
 export default async function DevMailboxPage() {
-  if (process.env.NODE_ENV === "production") notFound();
+  if (process.env.NODE_ENV === "production" && process.env.ENABLE_DEV_MAILBOX !== "true") notFound();
 
   const emails = await prisma.outboundEmail.findMany({ orderBy: { createdAt: "desc" }, take: 100 });
 

@@ -20,7 +20,7 @@ export default async function MarketsPage({ searchParams }: { searchParams: Prom
   return (
     <div className="space-y-6">
       <PageHeader title="Markets" description="Browse the instrument universe. Quotes are demo data and refresh every 15 seconds." />
-      <div className="grid gap-6 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className="xl:col-span-2">
           <MarketTable instruments={instruments} initialQuotes={initialQuotes} initialAssetClass={initialClass} />
         </div>

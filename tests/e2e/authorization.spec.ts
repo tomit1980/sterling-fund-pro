@@ -3,10 +3,13 @@ import { ADMIN, DEMO, apiLogin, latestMailLink, uniqueEmail } from "./helpers";
 
 test.describe("authorization and isolation", () => {
   test("unauthenticated requests are rejected", async ({ request }) => {
-    for (const path of ["/api/auth/me", "/api/dashboard/summary", "/api/dashboard/watchlist", "/api/account/profile", "/api/admin/users"]) {
+    for (const path of ["/api/dashboard/summary", "/api/dashboard/watchlist", "/api/account/profile", "/api/admin/users"]) {
       const res = await request.get(path);
       expect(res.status(), path).toBe(401);
     }
+    // /api/auth/me is a probe: 200 with a null user when signed out.
+    const me = await (await request.get("/api/auth/me")).json();
+    expect(me.data.user).toBeNull();
     const page = await request.get("/dashboard", { maxRedirects: 0 });
     expect([302, 307, 308]).toContain(page.status());
   });
@@ -31,7 +34,7 @@ test.describe("authorization and isolation", () => {
     });
     expect(reg.ok()).toBeTruthy();
     const link = await latestMailLink(request, email, /verify-email\?token=/);
-    const token = new URL(link).searchParams.get("token")!;
+    const token = new URL(link, "http://localhost").searchParams.get("token")!;
     const verify = await request.post("/api/auth/verify-email", { data: { token } });
     expect(verify.ok()).toBeTruthy();
 
@@ -66,7 +69,7 @@ test.describe("authorization and isolation", () => {
     const page = await ctx.newPage();
     await apiLogin(page.request, ADMIN.email, ADMIN.password);
     await page.goto("/admin/applications");
-    await expect(page.getByText(/submitted|under review/i).first()).toBeVisible();
+    await expect(page.locator("table").getByText(/submitted|under review/i).first()).toBeVisible();
     await ctx.close();
   });
 
